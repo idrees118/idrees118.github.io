@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Genomic Biomarker Discovery Platform
+title: Genomic Biomarker Discovery
 description: Advanced Big Data & ML Pipeline for Whole Genome Sequencing Analysis
 ---
 
