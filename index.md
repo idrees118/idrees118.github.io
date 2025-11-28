@@ -14,6 +14,7 @@ description: Enterprise Genomic Analysis | Advanced ML Pipeline
     --accent-blue: #3b82f6;
     --accent-green: #10b981;
     --accent-orange: #f59e0b;
+    --accent-red: #ef4444;
     --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: #94a3b8;
@@ -142,7 +143,7 @@ body {
 
 .control-label {
     display: flex;
-    justify-content: between;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
     color: var(--text-secondary);
@@ -158,6 +159,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     border: 1px solid var(--card-border);
+    position: relative;
 }
 
 input[type="range"] {
@@ -166,6 +168,7 @@ input[type="range"] {
     background: var(--card-border);
     border-radius: 3px;
     outline: none;
+    -webkit-appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -176,6 +179,12 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--accent-blue);
 }
 
 /* Metrics */
@@ -192,19 +201,47 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 8px;
     padding: 20px;
     text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-purple);
+}
+
+.metric-card.increasing {
+    border-color: var(--accent-red);
+    animation: pulseIncrease 1s ease-in-out;
+}
+
+.metric-card.decreasing {
+    border-color: var(--accent-green);
+    animation: pulseDecrease 1s ease-in-out;
 }
 
 .metric-value {
     font-size: 1.8em;
     font-weight: 700;
-    color: var(--accent-green);
     margin-bottom: 5px;
+    transition: all 0.3s ease;
 }
 
 .metric-label {
     color: var(--text-muted);
     font-size: 0.9em;
 }
+
+.cost-value { color: var(--accent-orange); }
+.accuracy-value { color: var(--accent-green); }
+.storage-value { color: var(--accent-blue); }
+.compute-value { color: var(--accent-purple); }
 
 /* Chart */
 .chart-container {
@@ -299,6 +336,29 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 1.4em;
 }
 
+/* Animations */
+@keyframes pulseIncrease {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+@keyframes pulseDecrease {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes valueChange {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.value-changing {
+    animation: valueChange 0.3s ease-in-out;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .main-grid {
@@ -308,17 +368,6 @@ input[type="range"]::-webkit-slider-thumb {
     .container {
         padding: 15px;
     }
-}
-
-/* Chart Animation */
-@keyframes pulse {
-    0% { opacity: 0.4; }
-    50% { opacity: 1; }
-    100% { opacity: 0.4; }
-}
-
-.loading {
-    animation: pulse 2s infinite;
 }
 </style>
 
@@ -380,20 +429,20 @@ input[type="range"]::-webkit-slider-thumb {
 
             <!-- Metrics -->
             <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-value" id="costMetric">$8,450</div>
+                <div class="metric-card" id="costCard">
+                    <div class="metric-value cost-value" id="costMetric">$8,450</div>
                     <div class="metric-label">MONTHLY_COST</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value" id="accuracyMetric">0.78</div>
+                <div class="metric-card" id="accuracyCard">
+                    <div class="metric-value accuracy-value" id="accuracyMetric">0.78</div>
                     <div class="metric-label">AUPRC_SCORE</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value" id="storageMetric">15 PB</div>
+                <div class="metric-card" id="storageCard">
+                    <div class="metric-value storage-value" id="storageMetric">14.97 PB</div>
                     <div class="metric-label">STORAGE_NEEDED</div>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value" id="computeMetric">High</div>
+                <div class="metric-card" id="computeCard">
+                    <div class="metric-value compute-value" id="computeMetric">High</div>
                     <div class="metric-label">COMPUTE_LEVEL</div>
                 </div>
             </div>
@@ -461,18 +510,67 @@ input[type="range"]::-webkit-slider-thumb {
         <h2 class="pipeline-title">ARCHITECTURE_PIPELINE</h2>
         <div class="mermaid">
 graph TD
-    A[RAW_GENOMIC_DATA] --> B[CLOUD_STORAGE_S3]
-    B --> C[DISTRIBUTED_PROCESSING]
-    C --> D[FEATURE_ENGINEERING]
-    D --> E[ML_TRAINING_XGBOOST]
-    E --> F[BIOMARKER_DISCOVERY]
+    A[UK Biobank Raw Data] --> B[Cloud Storage - AWS S3]
+    B --> C[Data Processing - Apache Spark]
+    C --> D[Feature Engineering - Spark ML]
+    D --> E[Model Training - XGBoost]
+    E --> F[Results & Interpretation]
     
+    subgraph A_details
+        A1[500,000 WGS Samples]
+        A2[15+ Petabytes]
+        A3[84M Features]
+    end
+    
+    subgraph B_details
+        B1[VCF/BAM Files]
+        B2[Phenotype Data]
+        B3[Clinical Records]
+    end
+    
+    subgraph C_details
+        C1[Quality Control]
+        C2[Variant Calling]
+        C3[Data Integration]
+    end
+    
+    subgraph D_details
+        D1[Variant Filtering]
+        D2[GWAS Pre-filtering]
+        D3[Biological Annotation]
+    end
+    
+    subgraph E_details
+        E1[Stratified Sampling]
+        E2[Hyperparameter Tuning]
+        E3[Cross-Validation]
+    end
+    
+    subgraph F_details
+        F1[Biomarker Discovery]
+        F2[Risk Scores]
+        F3[Clinical Reports]
+    end
+    
+    A --> A_details
+    B --> B_details
+    C --> C_details
+    D --> D_details
+    E --> E_details
+    F --> F_details
+
     style A fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style B fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style C fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style D fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style E fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style F fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
+    style A_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
+    style B_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
+    style C_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
+    style D_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
+    style E_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
+    style F_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
         </div>
     </div>
 
@@ -484,6 +582,14 @@ graph TD
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+// Store previous values for animation
+let previousValues = {
+    cost: 8450,
+    accuracy: 0.78,
+    storage: 14.97,
+    compute: 'High'
+};
+
 // Initialize Chart
 const ctx = document.getElementById('performanceChart').getContext('2d');
 let performanceChart;
@@ -558,7 +664,7 @@ function initializeChart() {
     });
 }
 
-// Update simulator values
+// Update simulator values with cool animations
 function updateSimulator() {
     const samples = parseInt(document.getElementById('datasetScale').value);
     const features = parseInt(document.getElementById('featureComplexity').value);
@@ -569,21 +675,61 @@ function updateSimulator() {
     document.getElementById('featureValue').textContent = (features/1000000).toFixed(0) + 'M Features';
     document.getElementById('speedValue').textContent = speed + ' Hours';
     
-    // Calculate metrics
-    const baseCost = (samples * 0.008) + (features * 0.0000004) + (speed * 150);
-    const cost = Math.round(baseCost * 1.2);
+    // Calculate metrics with proper storage calculation
+    const storageGB = samples * 30; // 30GB per sample (WGS data)
+    const storagePB = storageGB / 1000000; // Convert to PB
+    
+    const baseCost = (samples * 0.008) + (features * 0.0000004) + (speed * 150) + (storagePB * 200);
+    const cost = Math.round(baseCost);
     const accuracy = 0.65 + (samples/2000000) - (features/500000000) + (speed/80);
-    const storage = (samples * 0.03).toFixed(1);
     const compute = features > 50000000 ? 'High' : features > 20000000 ? 'Medium' : 'Low';
     
-    // Update metrics
-    document.getElementById('costMetric').textContent = '$' + cost.toLocaleString();
-    document.getElementById('accuracyMetric').textContent = Math.max(0.6, Math.min(0.95, accuracy)).toFixed(2);
-    document.getElementById('storageMetric').textContent = storage + ' PB';
-    document.getElementById('computeMetric').textContent = compute;
+    // Update metrics with animations
+    updateMetricWithAnimation('costMetric', cost, previousValues.cost, 'costCard', '$');
+    updateMetricWithAnimation('accuracyMetric', accuracy, previousValues.accuracy, 'accuracyCard', '', 2);
+    updateMetricWithAnimation('storageMetric', storagePB, previousValues.storage, 'storageCard', '', 2, ' PB');
+    updateMetric('computeMetric', compute, previousValues.compute, 'computeCard');
+    
+    // Store current values
+    previousValues = { cost, accuracy, storage: storagePB, compute };
     
     // Update chart
     updateChart(samples, cost, accuracy);
+}
+
+function updateMetricWithAnimation(elementId, newValue, oldValue, cardId, prefix = '', decimals = 0, suffix = '') {
+    const element = document.getElementById(elementId);
+    const card = document.getElementById(cardId);
+    
+    // Add animation class based on value change
+    if (newValue > oldValue) {
+        card.classList.add('increasing');
+        setTimeout(() => card.classList.remove('increasing'), 1000);
+    } else if (newValue < oldValue) {
+        card.classList.add('decreasing');
+        setTimeout(() => card.classList.remove('decreasing'), 1000);
+    }
+    
+    // Add value change animation
+    element.classList.add('value-changing');
+    setTimeout(() => element.classList.remove('value-changing'), 300);
+    
+    // Update value
+    const formattedValue = decimals > 0 ? newValue.toFixed(decimals) : newValue.toLocaleString();
+    element.textContent = prefix + formattedValue + suffix;
+}
+
+function updateMetric(elementId, newValue, oldValue, cardId) {
+    const element = document.getElementById(elementId);
+    const card = document.getElementById(cardId);
+    
+    // Add animation class based on value change
+    if (newValue !== oldValue) {
+        card.classList.add('increasing');
+        setTimeout(() => card.classList.remove('increasing'), 1000);
+    }
+    
+    element.textContent = newValue;
 }
 
 function updateChart(samples, cost, accuracy) {
