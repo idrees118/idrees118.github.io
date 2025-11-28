@@ -1,40 +1,47 @@
-# _config.yml
+# _config.yml - Jekyll Configuration ONLY
 title: "🧬 Genomic Research Pipeline"
-description: "Cloud-Native High-Throughput Genomic Analysis"
-theme: jekyll-theme-cayman
-remote_theme: pages-themes/cayman@v0.2.0
+description: "Cloud-Native High-Throughput Genomic Analysis Platform"
+baseurl: ""
+url: "https://your-username.github.io"
 
-# Enable customizations
+# Modern theme with better customization
+remote_theme: pmarsceill/just-the-docs@v0.4.0.rc3
+
+# Or if you prefer a more modern alternative:
+# remote_theme: pages-themes/minimal@v0.2.0
+
+# Enable plugins
 plugins:
   - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
-# Custom variables
-pipeline_version: "2.1.0"
-github_username: "your-username"
-repo_name: "your-repo-name"
+# Site settings
+repository: "your-username/your-repo-name"
+author: "Genomics Research Team"
+email: "team@genomics.ai"
+
+# Just the Docs theme configuration (if using that theme)
+just_the_docs:
+  collections:
+    tutorials:
+      name: Tutorials
+      nav_fold: true
+  aux_links:
+    "View on GitHub":
+      - "//github.com/your-username/your-repo-name"
+  color_scheme: "dark"
+
+# Custom variables for your site
+pipeline:
+  version: "2.1.0"
+  status: "Production Ready"
+  last_updated: "2024-01-15"
 
 # Exclude from processing
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-
-
-data_ingestion:
-  method: "Batch Processing via Apache Spark"
-  tools: ["Apache Spark 3.3", "Hail 0.2", "AWS EMR"]
-  
-storage:
-  raw_data: "AWS S3 Standard"
-  processed_data: "AWS S3 Intelligent Tiering"
-  
-processing:
-  data_cleaning: "PySpark, Hail for genomic QC"
-  transformation: "Distributed feature engineering"
-  
-analytics_modeling:
-  machine_learning: "XGBoost, Scikit-learn"
-  
-visualization:
-  dashboards: "Grafana, Tableau"
-  exploration: "Plotly, Matplotlib"
+  - "*.yml"  # Exclude all YAML config files
+  - "*.yaml"
