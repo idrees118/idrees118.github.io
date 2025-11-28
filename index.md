@@ -6,15 +6,19 @@ description: A Big Data & Machine Learning Pipeline for Whole Genome Sequencing 
 
 <style>
 :root {
-    --primary: #1e3a8a;
-    --secondary: #3730a3;
-    --accent: #6366f1;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --light: #f8fafc;
-    --dark: #1e293b;
-    --card-bg: rgba(255, 255, 255, 0.95);
+    --primary: #1a365d;
+    --secondary: #2d3748;
+    --accent-1: #805ad5;
+    --accent-2: #3182ce;
+    --accent-3: #38a169;
+    --accent-4: #dd6b20;
+    --accent-5: #e53e3e;
+    --light: #f7fafc;
+    --dark: #1a202c;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
 * {
@@ -27,7 +31,7 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: #334155;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-1);
     min-height: 100vh;
 }
 
@@ -39,23 +43,23 @@ body {
 
 /* Hero Section */
 .hero {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 60px 40px;
     margin: 30px 0;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     text-align: center;
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero h1 {
-    color: var(--primary);
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 3em;
     font-weight: 700;
     margin-bottom: 15px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .hero p {
@@ -74,7 +78,7 @@ body {
 }
 
 .tech-tag {
-    background: var(--accent);
+    background: var(--gradient-3);
     color: white;
     padding: 8px 20px;
     border-radius: 25px;
@@ -85,7 +89,7 @@ body {
 
 .tech-tag:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
 }
 
 /* Feature Grid */
@@ -97,12 +101,13 @@ body {
 }
 
 .feature-card {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .feature-card:hover {
@@ -111,7 +116,9 @@ body {
 }
 
 .feature-card h3 {
-    color: var(--primary);
+    background: var(--gradient-4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 1.4em;
     margin-bottom: 15px;
     display: flex;
@@ -127,15 +134,19 @@ body {
 
 /* KPI Section */
 .kpi-section {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 40px;
     margin: 40px 0;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .kpi-section h2 {
-    color: var(--primary);
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
     margin-bottom: 30px;
     font-size: 2.2em;
@@ -150,10 +161,12 @@ body {
 .kpi-card {
     text-align: center;
     padding: 25px;
-    background: linear-gradient(135deg, var(--light), #ffffff);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
     border-radius: 15px;
-    border-left: 5px solid var(--accent);
+    border-left: 5px solid;
+    border-image: var(--gradient-3) 1;
     transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .kpi-card:hover {
@@ -163,7 +176,9 @@ body {
 .kpi-value {
     font-size: 2.5em;
     font-weight: 700;
-    color: var(--primary);
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 8px;
 }
 
@@ -175,15 +190,19 @@ body {
 
 /* Pricing Calculator */
 .pricing-section {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 40px;
     margin: 40px 0;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .pricing-section h2 {
-    color: var(--primary);
+    background: var(--gradient-3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
     margin-bottom: 30px;
     font-size: 2.2em;
@@ -197,15 +216,19 @@ body {
 }
 
 .pricing-control {
-    background: var(--light);
+    background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 12px;
-    border-left: 4px solid var(--success);
+    border-left: 4px solid;
+    border-image: var(--gradient-4) 1;
+    backdrop-filter: blur(10px);
 }
 
 .pricing-control label {
     display: block;
-    color: var(--primary);
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-weight: 600;
     margin-bottom: 10px;
 }
@@ -217,18 +240,20 @@ body {
     border-radius: 8px;
     font-size: 1em;
     transition: border-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .pricing-control input:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--accent-1);
 }
 
 .cost-breakdown {
-    background: var(--light);
+    background: rgba(255, 255, 255, 0.8);
     padding: 25px;
     border-radius: 15px;
     margin-top: 20px;
+    backdrop-filter: blur(10px);
 }
 
 .cost-item {
@@ -241,46 +266,58 @@ body {
 .cost-item:last-child {
     border-bottom: none;
     font-weight: 700;
-    color: var(--primary);
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Diagram Section */
 .diagram-section {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 40px;
     margin: 40px 0;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .diagram-section h2 {
-    color: var(--primary);
+    background: var(--gradient-4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 30px;
     font-size: 2.2em;
 }
 
 /* Methodology Section */
 .methodology-section {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 40px;
     margin: 40px 0;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .methodology-section h2 {
-    color: var(--primary);
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 25px;
     font-size: 2.2em;
 }
 
 .metric-explanation {
-    background: var(--light);
+    background: rgba(255, 255, 255, 0.8);
     padding: 25px;
     border-radius: 12px;
     margin-top: 20px;
-    border-left: 4px solid var(--warning);
+    border-left: 4px solid;
+    border-image: var(--gradient-3) 1;
+    backdrop-filter: blur(10px);
 }
 
 /* Buttons */
@@ -304,19 +341,20 @@ body {
 }
 
 .btn-primary {
-    background: var(--accent);
+    background: var(--gradient-3);
     color: white;
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--accent);
-    border: 2px solid var(--accent);
+    color: var(--accent-2);
+    border: 2px solid;
+    border-image: var(--gradient-3) 1;
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
 }
 
 /* Responsive */
@@ -441,7 +479,7 @@ body {
         </div>
 
         <div class="cost-breakdown">
-            <h3 style="color: var(--primary); margin-bottom: 20px;">Estimated Monthly Cost: <span id="totalCost">$8,450</span></h3>
+            <h3 style="background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">Estimated Monthly Cost: <span id="totalCost">$8,450</span></h3>
             
             <div class="cost-item">
                 <span>Storage (S3)</span>
@@ -469,71 +507,70 @@ body {
     <!-- Pipeline Diagram -->
     <div class="diagram-section" id="pipeline">
         <h2>End-to-End Pipeline Architecture</h2>
-        
-        ```mermaid
-        graph TD
-            A[UK Biobank Raw Data] --> B[Cloud Storage - AWS S3]
-            B --> C[Data Processing - Apache Spark]
-            C --> D[Feature Engineering - Spark ML]
-            D --> E[Model Training - XGBoost]
-            E --> F[Results & Interpretation]
-            
-            subgraph A_details
-                A1[500,000 WGS Samples]
-                A2[15+ Petabytes]
-                A3[84M Features]
-            end
-            
-            subgraph B_details
-                B1[VCF/BAM Files]
-                B2[Phenotype Data]
-                B3[Clinical Records]
-            end
-            
-            subgraph C_details
-                C1[Quality Control]
-                C2[Variant Calling]
-                C3[Data Integration]
-            end
-            
-            subgraph D_details
-                D1[Variant Filtering]
-                D2[GWAS Pre-filtering]
-                D3[Biological Annotation]
-            end
-            
-            subgraph E_details
-                E1[Stratified Sampling]
-                E2[Hyperparameter Tuning]
-                E3[Cross-Validation]
-            end
-            
-            subgraph F_details
-                F1[Biomarker Discovery]
-                F2[Risk Scores]
-                F3[Clinical Reports]
-            end
-            
-            A --> A_details
-            B --> B_details
-            C --> C_details
-            D --> D_details
-            E --> E_details
-            F --> F_details
+        <div class="mermaid">
+graph TD
+    A[UK Biobank Raw Data] --> B[Cloud Storage - AWS S3]
+    B --> C[Data Processing - Apache Spark]
+    C --> D[Feature Engineering - Spark ML]
+    D --> E[Model Training - XGBoost]
+    E --> F[Results & Interpretation]
+    
+    subgraph A_details
+        A1[500,000 WGS Samples]
+        A2[15+ Petabytes]
+        A3[84M Features]
+    end
+    
+    subgraph B_details
+        B1[VCF/BAM Files]
+        B2[Phenotype Data]
+        B3[Clinical Records]
+    end
+    
+    subgraph C_details
+        C1[Quality Control]
+        C2[Variant Calling]
+        C3[Data Integration]
+    end
+    
+    subgraph D_details
+        D1[Variant Filtering]
+        D2[GWAS Pre-filtering]
+        D3[Biological Annotation]
+    end
+    
+    subgraph E_details
+        E1[Stratified Sampling]
+        E2[Hyperparameter Tuning]
+        E3[Cross-Validation]
+    end
+    
+    subgraph F_details
+        F1[Biomarker Discovery]
+        F2[Risk Scores]
+        F3[Clinical Reports]
+    end
+    
+    A --> A_details
+    B --> B_details
+    C --> C_details
+    D --> D_details
+    E --> E_details
+    F --> F_details
 
-            style A fill:#1e3a8a,stroke:#1e40af,stroke-width:2px,color:#ffffff
-            style B fill:#7e22ce,stroke:#9333ea,stroke-width:2px,color:#ffffff
-            style C fill:#0f766e,stroke:#0d9488,stroke-width:2px,color:#ffffff
-            style D fill:#b45309,stroke:#d97706,stroke-width:2px,color:#ffffff
-            style E fill:#be123c,stroke:#e11d48,stroke-width:2px,color:#ffffff
-            style F fill:#047857,stroke:#059669,stroke-width:2px,color:#ffffff
-            style A_details fill:#1e3a8a,stroke:#1e40af,stroke-width:1px,color:#ffffff
-            style B_details fill:#7e22ce,stroke:#9333ea,stroke-width:1px,color:#ffffff
-            style C_details fill:#0f766e,stroke:#0d9488,stroke-width:1px,color:#ffffff
-            style D_details fill:#b45309,stroke:#d97706,stroke-width:1px,color:#ffffff
-            style E_details fill:#be123c,stroke:#e11d48,stroke-width:1px,color:#ffffff
-            style F_details fill:#047857,stroke:#059669,stroke-width:1px,color:#ffffff
-        ```
+    style A fill:#1e3a8a,stroke:#1e40af,stroke-width:2px,color:#ffffff
+    style B fill:#7e22ce,stroke:#9333ea,stroke-width:2px,color:#ffffff
+    style C fill:#0f766e,stroke:#0d9488,stroke-width:2px,color:#ffffff
+    style D fill:#b45309,stroke:#d97706,stroke-width:2px,color:#ffffff
+    style E fill:#be123c,stroke:#e11d48,stroke-width:2px,color:#ffffff
+    style F fill:#047857,stroke:#059669,stroke-width:2px,color:#ffffff
+    style A_details fill:#1e3a8a,stroke:#1e40af,stroke-width:1px,color:#ffffff
+    style B_details fill:#7e22ce,stroke:#9333ea,stroke-width:1px,color:#ffffff
+    style C_details fill:#0f766e,stroke:#0d9488,stroke-width:1px,color:#ffffff
+    style D_details fill:#b45309,stroke:#d97706,stroke-width:1px,color:#ffffff
+    style E_details fill:#be123c,stroke:#e11d48,stroke-width:1px,color:#ffffff
+    style F_details fill:#047857,stroke:#059669,stroke-width:1px,color:#ffffff
+        </div>
     </div>
 
     <!-- Methodology Section -->
@@ -543,7 +580,7 @@ body {
         <p>Selected for its robustness in handling severe class imbalance common in disease prediction scenarios. Optimizes the critical trade-off between identifying true at-risk individuals (Recall) and minimizing false alarms (Precision).</p>
         
         <div class="metric-explanation">
-            <h4>📊 Why AUPRC over Accuracy?</h4>
+            <h4 style="background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📊 Why AUPRC over Accuracy?</h4>
             <ul style="list-style: none; padding: 0;">
                 <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">🎯 <strong>Recall:</strong> Missing high-risk patients leads to preventable late-stage diseases</li>
                 <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">💰 <strong>Precision:</strong> False positives cause unnecessary anxiety and healthcare costs</li>
@@ -592,4 +629,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial calculation
     updatePricing();
 });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    mermaid.initialize({ startOnLoad: true });
 </script>
