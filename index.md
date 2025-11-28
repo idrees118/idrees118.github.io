@@ -242,6 +242,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .accuracy-value { color: var(--accent-green); }
 .storage-value { color: var(--accent-blue); }
 .compute-value { color: var(--accent-purple); }
+.variants-value { color: var(--accent-red); }
 
 /* Chart */
 .chart-container {
@@ -250,7 +251,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border-radius: 8px;
     padding: 25px;
     margin-top: 25px;
-    height: 300px;
+    height: 350px;
     position: relative;
     overflow: hidden;
 }
@@ -311,6 +312,28 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-weight: 600;
 }
 
+/* Research Metrics */
+.research-metrics {
+    background: var(--darker-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.metric-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--card-border);
+    font-size: 0.9em;
+}
+
+.metric-detail:last-child {
+    border-bottom: none;
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -368,6 +391,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
     .container {
         padding: 15px;
     }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 
@@ -393,13 +420,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
         <div class="simulator" id="simulator">
             <h2>🧬 Genomic Analysis Simulator</h2>
             <p style="color: var(--text-secondary); margin-bottom: 25px;">
-                Adjust parameters to predict computational requirements and performance metrics.
+                Adjust parameters to predict computational requirements and research impact metrics.
             </p>
 
             <!-- Controls -->
             <div class="control-group">
                 <div class="control-label">
-                    <span>DATASET_SCALE</span>
+                    <span>WGS_SAMPLES</span>
                     <span class="control-value" id="datasetValue">500K Samples</span>
                 </div>
                 <div class="slider-container">
@@ -409,8 +436,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
             <div class="control-group">
                 <div class="control-label">
-                    <span>FEATURE_COMPLEXITY</span>
-                    <span class="control-value" id="featureValue">84M Features</span>
+                    <span>GENOMIC_FEATURES</span>
+                    <span class="control-value" id="featureValue">84M Variants</span>
                 </div>
                 <div class="slider-container">
                     <input type="range" id="featureComplexity" min="1000000" max="100000000" value="84000000" step="1000000">
@@ -419,87 +446,108 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
             <div class="control-group">
                 <div class="control-label">
-                    <span>PROCESSING_SPEED</span>
-                    <span class="control-value" id="speedValue">6 Hours</span>
+                    <span>ANALYSIS_DEPTH</span>
+                    <span class="control-value" id="depthValue">Comprehensive</span>
                 </div>
                 <div class="slider-container">
-                    <input type="range" id="processingSpeed" min="1" max="48" value="6" step="1">
+                    <input type="range" id="analysisDepth" min="1" max="3" value="2" step="1">
                 </div>
             </div>
 
             <!-- Metrics -->
             <div class="metrics-grid">
                 <div class="metric-card" id="costCard">
-                    <div class="metric-value cost-value" id="costMetric">$8,450</div>
+                    <div class="metric-value cost-value" id="costMetric">$12,847</div>
                     <div class="metric-label">MONTHLY_COST</div>
                 </div>
                 <div class="metric-card" id="accuracyCard">
-                    <div class="metric-value accuracy-value" id="accuracyMetric">0.78</div>
+                    <div class="metric-value accuracy-value" id="accuracyMetric">0.81</div>
                     <div class="metric-label">AUPRC_SCORE</div>
                 </div>
                 <div class="metric-card" id="storageCard">
-                    <div class="metric-value storage-value" id="storageMetric">14.97 PB</div>
+                    <div class="metric-value storage-value" id="storageMetric">2.98 PB</div>
                     <div class="metric-label">STORAGE_NEEDED</div>
                 </div>
-                <div class="metric-card" id="computeCard">
-                    <div class="metric-value compute-value" id="computeMetric">High</div>
-                    <div class="metric-label">COMPUTE_LEVEL</div>
+                <div class="metric-card" id="variantsCard">
+                    <div class="metric-value variants-value" id="variantsMetric">84M</div>
+                    <div class="metric-label">VARIANTS_CALLED</div>
                 </div>
             </div>
 
-            <!-- Live Chart -->
+            <!-- Research Impact Metrics -->
+            <div class="research-metrics">
+                <h4 style="color: var(--text-primary); margin-bottom: 15px;">RESEARCH_IMPACT</h4>
+                <div class="metric-detail">
+                    <span>Statistical Power</span>
+                    <span class="status-value" id="powerMetric">98.7%</span>
+                </div>
+                <div class="metric-detail">
+                    <span>Rare Variants (MAF < 0.01)</span>
+                    <span class="status-value" id="rareVariants">4.2M</span>
+                </div>
+                <div class="metric-detail">
+                    <span>Pathogenic Findings</span>
+                    <span class="status-value" id="pathogenicMetric">~1,240</span>
+                </div>
+                <div class="metric-detail">
+                    <span>Compute Hours Needed</span>
+                    <span class="status-value" id="computeHours">3,240</span>
+                </div>
+            </div>
+
+            <!-- New Chart: Genomic Discovery Potential -->
             <div class="chart-container">
-                <canvas id="performanceChart" class="chart-canvas"></canvas>
+                <canvas id="discoveryChart" class="chart-canvas"></canvas>
             </div>
         </div>
 
         <!-- Info Panel -->
         <div class="info-panel">
             <div class="model-info">
-                <div class="model-badge">MODEL: XGBOOST_V4</div>
+                <div class="model-badge">MODEL: XGBOOST_V4_GENOMICS</div>
                 <div class="accuracy">ACCURACY: 0.94 AUPRC</div>
                 <div style="color: var(--text-muted); font-size: 0.9em;">
-                    Optimized for genomic feature analysis
+                    Optimized for polygenic risk prediction
                 </div>
             </div>
 
             <div style="margin-bottom: 25px;">
-                <h3 style="color: var(--text-primary); margin-bottom: 15px;">SYSTEM_STATUS</h3>
+                <h3 style="color: var(--text-primary); margin-bottom: 15px;">GENOMIC_STATISTICS</h3>
                 <div class="status-item">
-                    <span>CLUSTER_READY</span>
-                    <span class="status-value">ACTIVE</span>
+                    <span>Coverage Depth</span>
+                    <span class="status-value">30x</span>
                 </div>
                 <div class="status-item">
-                    <span>GPU_ACCELERATION</span>
-                    <span class="status-value">ENABLED</span>
+                    <span>Variant Call Rate</span>
+                    <span class="status-value">99.2%</span>
                 </div>
                 <div class="status-item">
-                    <span>DATA_STREAM</span>
-                    <span class="status-value">LIVE</span>
+                    <span>QC Pass Rate</span>
+                    <span class="status-value">97.8%</span>
                 </div>
                 <div class="status-item">
-                    <span>MODEL_TRAINING</span>
-                    <span class="status-value">OPTIMAL</span>
+                    <span>Annotation Complete</span>
+                    <span class="status-value">100%</span>
                 </div>
             </div>
 
             <div>
-                <h3 style="color: var(--text-primary); margin-bottom: 15px;">PERFORMANCE</h3>
+                <h3 style="color: var(--text-primary); margin-bottom: 15px;">CLINICAL_METRICS</h3>
                 <div class="status-item">
-                    <span>PRECISION</span>
-                    <span class="status-value">0.92</span>
+                    <span>Disease Associations</span>
+                    <span class="status-value">142</span>
                 </div>
                 <div class="status-item">
-                    <span>RECALL</span>
-                    <span class="status-value">0.89</span>
+                    <span>Drug Targets</span>
+                    <span class="status-value">67</span>
                 </div>
                 <div class="status-item">
-                    <span>F1_SCORE</span>
-                    <span class="status-value">0.90</span>
+                    <span>Biomarkers Found</span>
+                    <span class="status-value">89</span>
                 </div>
                 <div class="status-item">
-                    <span>LATENCY</span>
-                    <span class="status-value">124ms</span>
+                    <span>Heritability Explained</span>
+                    <span class="status-value">38%</span>
                 </div>
             </div>
         </div>
@@ -507,76 +555,33 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
     <!-- Pipeline Section -->
     <div class="pipeline-section" id="pipeline">
-        <h2 class="pipeline-title">ARCHITECTURE_PIPELINE</h2>
+        <h2 class="pipeline-title">GENOMIC_ANALYSIS_PIPELINE</h2>
         <div class="mermaid">
 graph TD
-    A[UK Biobank Raw Data] --> B[Cloud Storage - AWS S3]
-    B --> C[Data Processing - Apache Spark]
-    C --> D[Feature Engineering - Spark ML]
-    D --> E[Model Training - XGBoost]
-    E --> F[Results & Interpretation]
+    A[FASTQ Raw Sequences<br/>~300GB/sample] --> B[Alignment & QC<br/>BWA-MEM, FastQC]
+    B --> C[Variant Calling<br/>GATK, FreeBayes]
+    C --> D[Variant Annotation<br/>VEP, ANNOVAR]
+    D --> E[Quality Filtering<br/>VQSR, Hard Filters]
+    E --> F[Feature Matrix<br/>84M variants × 500K samples]
+    F --> G[ML Training<br/>XGBoost, Spark ML]
+    G --> H[Risk Prediction<br/>Polygenic Scores]
+    H --> I[Biomarker Discovery<br/>GWAS, PRS]
     
-    subgraph A_details
-        A1[500,000 WGS Samples]
-        A2[15+ Petabytes]
-        A3[84M Features]
-    end
-    
-    subgraph B_details
-        B1[VCF/BAM Files]
-        B2[Phenotype Data]
-        B3[Clinical Records]
-    end
-    
-    subgraph C_details
-        C1[Quality Control]
-        C2[Variant Calling]
-        C3[Data Integration]
-    end
-    
-    subgraph D_details
-        D1[Variant Filtering]
-        D2[GWAS Pre-filtering]
-        D3[Biological Annotation]
-    end
-    
-    subgraph E_details
-        E1[Stratified Sampling]
-        E2[Hyperparameter Tuning]
-        E3[Cross-Validation]
-    end
-    
-    subgraph F_details
-        F1[Biomarker Discovery]
-        F2[Risk Scores]
-        F3[Clinical Reports]
-    end
-    
-    A --> A_details
-    B --> B_details
-    C --> C_details
-    D --> D_details
-    E --> E_details
-    F --> F_details
-
     style A fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style B fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style C fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style D fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style E fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style F fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
-    style A_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
-    style B_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
-    style C_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
-    style D_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
-    style E_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
-    style F_details fill:#2d2d4d,stroke:#8b5cf6,stroke-width:1px,color:#ffffff
+    style G fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
+    style H fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
+    style I fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
         </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        CONFIDENTIAL • ACADEMIC SUBMISSION 2024 • LEAD ARCHITECT
+        CONFIDENTIAL • ACADEMIC SUBMISSION 2024 • LEAD GENOMIC ARCHITECT
     </div>
 </div>
 
@@ -584,37 +589,34 @@ graph TD
 <script>
 // Store previous values for animation
 let previousValues = {
-    cost: 8450,
-    accuracy: 0.78,
-    storage: 14.97,
-    compute: 'High'
+    cost: 12847,
+    accuracy: 0.81,
+    storage: 2.98,
+    variants: 84000000
 };
 
-// Initialize Chart
-const ctx = document.getElementById('performanceChart').getContext('2d');
-let performanceChart;
+// Initialize Discovery Chart
+const ctx = document.getElementById('discoveryChart').getContext('2d');
+let discoveryChart;
 
 function initializeChart() {
-    performanceChart = new Chart(ctx, {
-        type: 'line',
+    discoveryChart = new Chart(ctx, {
+        type: 'bar',
         data: {
-            labels: ['1K', '50K', '100K', '250K', '500K', '750K', '1M'],
+            labels: ['Common Variants', 'Rare Variants', 'Structural Variants', 'Novel Findings', 'Clinical Actionable'],
             datasets: [{
-                label: 'COST_EFFICIENCY',
-                data: [1200, 2450, 4200, 6800, 8450, 11200, 13800],
-                borderColor: '#8b5cf6',
-                backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                borderWidth: 3,
-                fill: true,
-                tension: 0.4
-            }, {
-                label: 'PERFORMANCE_SCORE',
-                data: [0.65, 0.72, 0.76, 0.78, 0.78, 0.77, 0.76],
-                borderColor: '#10b981',
-                borderWidth: 3,
-                fill: false,
-                tension: 0.4,
-                yAxisID: 'y1'
+                label: 'Discovery Potential',
+                data: [65, 23, 8, 3, 1],
+                backgroundColor: [
+                    '#8b5cf6',
+                    '#3b82f6', 
+                    '#10b981',
+                    '#f59e0b',
+                    '#ef4444'
+                ],
+                borderColor: '#1a1a2e',
+                borderWidth: 2,
+                borderRadius: 6
             }]
         },
         options: {
@@ -623,25 +625,20 @@ function initializeChart() {
             scales: {
                 y: {
                     beginAtZero: true,
+                    max: 100,
                     grid: {
                         color: 'rgba(255,255,255,0.1)'
                     },
                     ticks: {
                         color: '#94a3b8',
                         callback: function(value) {
-                            return '$' + value.toLocaleString();
+                            return value + '%';
                         }
-                    }
-                },
-                y1: {
-                    position: 'right',
-                    beginAtZero: true,
-                    max: 1,
-                    grid: {
-                        drawOnChartArea: false
                     },
-                    ticks: {
-                        color: '#94a3b8'
+                    title: {
+                        display: true,
+                        text: 'Discovery Percentage',
+                        color: '#cbd5e1'
                     }
                 },
                 x: {
@@ -655,8 +652,13 @@ function initializeChart() {
             },
             plugins: {
                 legend: {
-                    labels: {
-                        color: '#cbd5e1'
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + '% of significant findings';
+                        }
                     }
                 }
             }
@@ -664,40 +666,70 @@ function initializeChart() {
     });
 }
 
-// Update simulator values with cool animations
+// Precise storage calculations for WGS data
+function calculateStorage(samples, analysisDepth) {
+    // WGS storage breakdown (more realistic)
+    const rawFastqPerSample = 100; // GB per sample (compressed FASTQ)
+    const bamFilesPerSample = 50;  // GB per sample (aligned BAM)
+    const vcfFilesPerSample = 2;   // GB per sample (compressed VCF)
+    const processedDataPerSample = 5; // GB per sample (processed matrices)
+    
+    let totalStorage = 0;
+    
+    if (analysisDepth === 1) { // Basic analysis
+        totalStorage = samples * (rawFastqPerSample + bamFilesPerSample) / 1000; // Convert to TB
+    } else if (analysisDepth === 2) { // Comprehensive analysis
+        totalStorage = samples * (rawFastqPerSample + bamFilesPerSample + vcfFilesPerSample) / 1000;
+    } else { // Advanced analysis (includes all processed data)
+        totalStorage = samples * (rawFastqPerSample + bamFilesPerSample + vcfFilesPerSample + processedDataPerSample) / 1000;
+    }
+    
+    return totalStorage / 1000; // Convert TB to PB
+}
+
+// Update simulator values with precise calculations
 function updateSimulator() {
     const samples = parseInt(document.getElementById('datasetScale').value);
     const features = parseInt(document.getElementById('featureComplexity').value);
-    const speed = parseInt(document.getElementById('processingSpeed').value);
+    const depth = parseInt(document.getElementById('analysisDepth').value);
     
     // Update displays
     document.getElementById('datasetValue').textContent = (samples/1000).toFixed(0) + 'K Samples';
-    document.getElementById('featureValue').textContent = (features/1000000).toFixed(0) + 'M Features';
-    document.getElementById('speedValue').textContent = speed + ' Hours';
+    document.getElementById('featureValue').textContent = (features/1000000).toFixed(0) + 'M Variants';
     
-    // Calculate metrics with proper storage calculation
-    const storageGB = samples * 30; // 30GB per sample (WGS data)
-    const storagePB = storageGB / 1000000; // Convert to PB
+    const depthLabels = ['Basic', 'Comprehensive', 'Advanced'];
+    document.getElementById('depthValue').textContent = depthLabels[depth - 1];
     
-    const baseCost = (samples * 0.008) + (features * 0.0000004) + (speed * 150) + (storagePB * 200);
+    // Precise calculations
+    const storagePB = calculateStorage(samples, depth);
+    const baseCost = (samples * 0.015) + (features * 0.0000003) + (storagePB * 3500) + (depth * 800);
     const cost = Math.round(baseCost);
-    const accuracy = 0.65 + (samples/2000000) - (features/500000000) + (speed/80);
-    const compute = features > 50000000 ? 'High' : features > 20000000 ? 'Medium' : 'Low';
+    const accuracy = 0.70 + (samples/1500000) - (features/400000000) + (depth * 0.05);
+    const statisticalPower = 85 + (samples/20000) + (depth * 4);
+    const rareVariants = Math.round(features * 0.05); // 5% are rare variants
+    const pathogenicFindings = Math.round(samples * 0.0025); // 0.25% have pathogenic variants
+    const computeHours = samples * 0.006 + features * 0.0000001 + depth * 200;
     
     // Update metrics with animations
     updateMetricWithAnimation('costMetric', cost, previousValues.cost, 'costCard', '$');
     updateMetricWithAnimation('accuracyMetric', accuracy, previousValues.accuracy, 'accuracyCard', '', 2);
     updateMetricWithAnimation('storageMetric', storagePB, previousValues.storage, 'storageCard', '', 2, ' PB');
-    updateMetric('computeMetric', compute, previousValues.compute, 'computeCard');
+    updateMetricWithAnimation('variantsMetric', features, previousValues.variants, 'variantsCard', '', 0, '', true);
+    
+    // Update research metrics
+    document.getElementById('powerMetric').textContent = Math.min(99.9, statisticalPower).toFixed(1) + '%';
+    document.getElementById('rareVariants').textContent = (rareVariants/1000000).toFixed(1) + 'M';
+    document.getElementById('pathogenicMetric').textContent = '~' + pathogenicFindings.toLocaleString();
+    document.getElementById('computeHours').textContent = Math.round(computeHours).toLocaleString();
     
     // Store current values
-    previousValues = { cost, accuracy, storage: storagePB, compute };
+    previousValues = { cost, accuracy, storage: storagePB, variants: features };
     
-    // Update chart
-    updateChart(samples, cost, accuracy);
+    // Update chart based on sample size
+    updateChart(samples);
 }
 
-function updateMetricWithAnimation(elementId, newValue, oldValue, cardId, prefix = '', decimals = 0, suffix = '') {
+function updateMetricWithAnimation(elementId, newValue, oldValue, cardId, prefix = '', decimals = 0, suffix = '', compact = false) {
     const element = document.getElementById(elementId);
     const card = document.getElementById(cardId);
     
@@ -715,37 +747,35 @@ function updateMetricWithAnimation(elementId, newValue, oldValue, cardId, prefix
     setTimeout(() => element.classList.remove('value-changing'), 300);
     
     // Update value
-    const formattedValue = decimals > 0 ? newValue.toFixed(decimals) : newValue.toLocaleString();
+    let formattedValue;
+    if (compact && newValue >= 1000000) {
+        formattedValue = (newValue/1000000).toFixed(1) + 'M';
+    } else {
+        formattedValue = decimals > 0 ? newValue.toFixed(decimals) : newValue.toLocaleString();
+    }
     element.textContent = prefix + formattedValue + suffix;
 }
 
-function updateMetric(elementId, newValue, oldValue, cardId) {
-    const element = document.getElementById(elementId);
-    const card = document.getElementById(cardId);
+function updateChart(samples) {
+    // Update discovery potential based on sample size
+    const sampleFactor = Math.min(1, samples / 500000);
     
-    // Add animation class based on value change
-    if (newValue !== oldValue) {
-        card.classList.add('increasing');
-        setTimeout(() => card.classList.remove('increasing'), 1000);
-    }
+    discoveryChart.data.datasets[0].data = [
+        65 * sampleFactor,
+        23 * (0.5 + sampleFactor * 0.5),
+        8 * (0.3 + sampleFactor * 0.7),
+        3 * (0.1 + sampleFactor * 0.9),
+        1 * (0.05 + sampleFactor * 0.95)
+    ];
     
-    element.textContent = newValue;
-}
-
-function updateChart(samples, cost, accuracy) {
-    const sampleIndex = Math.min(6, Math.floor((samples - 1000) / 166000));
-    
-    performanceChart.data.datasets[0].data[sampleIndex] = cost;
-    performanceChart.data.datasets[1].data[sampleIndex] = Math.max(0.6, Math.min(0.95, accuracy));
-    
-    performanceChart.update('none');
+    discoveryChart.update('none');
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     initializeChart();
     
-    const sliders = ['datasetScale', 'featureComplexity', 'processingSpeed'];
+    const sliders = ['datasetScale', 'featureComplexity', 'analysisDepth'];
     sliders.forEach(sliderId => {
         document.getElementById(sliderId).addEventListener('input', updateSimulator);
     });
