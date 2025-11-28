@@ -18,3 +18,24 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
+
+
+
+  data_ingestion:
+  method: "Batch Processing via Apache Spark"
+  tools: ["Apache Spark 3.3", "Hail 0.2", "AWS EMR"]
+  
+storage:
+  raw_data: "AWS S3 Standard"
+  processed_data: "AWS S3 Intelligent Tiering"
+  
+processing:
+  data_cleaning: "PySpark, Hail for genomic QC"
+  transformation: "Distributed feature engineering"
+  
+analytics_modeling:
+  machine_learning: "XGBoost, Scikit-learn"
+  
+visualization:
+  dashboards: "Grafana, Tableau"
+  exploration: "Plotly, Matplotlib"
