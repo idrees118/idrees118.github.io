@@ -1,245 +1,271 @@
 ---
 layout: default
-title: "🧬🌐 High-Throughput Genomic Research Pipeline"
-description: "Cloud-Native Solution for Large-Scale Disease Risk Prediction"
+title: "🧬 Genomic Research Pipeline"
+description: "Cloud-Native High-Throughput Genomic Analysis"
 ---
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<!-- Modern CSS Framework -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #10b981;
+  --accent: #f59e0b;
+  --dark: #1f2937;
+  --light: #f8fafc;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.architecture-layer {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.architecture-layer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.phase-section {
+  background: var(--light);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-left: 4px solid var(--secondary);
+}
+
+.code-block {
+  background: #1a1b26;
+  color: #c0caf5;
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.badge-modern {
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+</style>
 
 <div class="hero-section">
-  <div class="hero-content">
-    <h1>🧬🌐 High-Throughput Genomic Research Pipeline</h1>
-    <p class="subtitle">Cloud-Native Solution for Large-Scale Disease Risk Prediction</p>
-    
-    <div class="badge-container">
-      <span class="badge badge-success"><i class="fas fa-check-circle"></i> Production Ready</span>
-      <span class="badge badge-info"><i class="fas fa-code-branch"></i> Version 2.1.0</span>
-      <span class="badge badge-warning"><i class="fas fa-dollar-sign"></i> $2.5K-$4K/Run</span>
-      <span class="badge badge-danger"><i class="fas fa-chart-line"></i> 0.87 PR-AUC</span>
-      <span class="badge badge-aws"><i class="fab fa-aws"></i> AWS Powered</span>
-    </div>
-  </div>
-</div>
-
-## Performance Dashboard
-
-<div class="dashboard">
-  <div class="metric-grid">
-    <!-- Metric 1 -->
-    <div class="metric-card" data-value="1.2" data-target="1.0">
-      <div class="metric-icon">🚀</div>
-      <h3>Data Processing Speed</h3>
-      <div class="metric-value">1.2 TB/Hour</div>
-      <div class="progress">
-        <div class="progress-bar" style="width: 85%"></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="hero-content">
+          <h1 class="display-4 fw-bold mb-3">🧬🌐 Genomic Research Pipeline</h1>
+          <p class="lead mb-4">Cloud-Native High-Throughput Platform for Large-Scale Disease Risk Prediction</p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge-modern"><i class="fas fa-check-circle me-1"></i> Production Ready</span>
+            <span class="badge-modern" style="background: var(--secondary);"><i class="fas fa-code-branch me-1"></i> v2.1.0</span>
+            <span class="badge-modern" style="background: var(--accent);"><i class="fas fa-dollar-sign me-1"></i> $2.5K-$4K/Run</span>
+            <span class="badge-modern" style="background: #ef4444;"><i class="fas fa-chart-line me-1"></i> 0.87 PR-AUC</span>
+          </div>
+          <div class="glass-card">
+            <p class="mb-0"><strong>84 Million Variants</strong> processed across <strong>2,504 samples</strong> from the 1000 Genomes Project</p>
+          </div>
+        </div>
       </div>
-      <div class="metric-status success">+20% Above Target</div>
     </div>
+  </div>
+</div>
 
-    <!-- Metric 2 -->
-    <div class="metric-card" data-value="2800" data-target="3000">
-      <div class="metric-icon">💰</div>
-      <h3>Cost Efficiency</h3>
-      <div class="metric-value">$2,800/Run</div>
-      <div class="progress">
-        <div class="progress-bar" style="width: 78%"></div>
+<div class="container my-5">
+  
+  <!-- Executive Dashboard -->
+  <section class="mb-5">
+    <h2 class="text-center mb-4">📊 Live Performance Dashboard</h2>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="metric-card">
+          <div class="text-primary mb-2"><i class="fas fa-rocket fa-2x"></i></div>
+          <h3 class="h4">1.2 TB/Hour</h3>
+          <p class="text-muted">Data Processing Speed</p>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-primary" style="width: 85%"></div>
+          </div>
+          <small class="text-success"><i class="fas fa-arrow-up"></i> +20% Above Target</small>
+        </div>
       </div>
-      <div class="metric-status success">7% Under Budget</div>
-    </div>
-
-    <!-- Metric 3 -->
-    <div class="metric-card" data-value="0.87" data-target="0.85">
-      <div class="metric-icon">🎯</div>
-      <h3>Model Performance</h3>
-      <div class="metric-value">0.87 PR-AUC</div>
-      <div class="progress">
-        <div class="progress-bar" style="width: 87%"></div>
+      <div class="col-md-3">
+        <div class="metric-card">
+          <div class="text-success mb-2"><i class="fas fa-dollar-sign fa-2x"></i></div>
+          <h3 class="h4">$2,800</h3>
+          <p class="text-muted">Cost per Run</p>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-success" style="width: 78%"></div>
+          </div>
+          <small class="text-success"><i class="fas fa-arrow-down"></i> 7% Under Budget</small>
+        </div>
       </div>
-      <div class="metric-status success">Target Exceeded</div>
-    </div>
-
-    <!-- Metric 4 -->
-    <div class="metric-card" data-value="14.5" data-target="16">
-      <div class="metric-icon">⚡</div>
-      <h3>Processing Time</h3>
-      <div class="metric-value">14.5 Hours</div>
-      <div class="progress">
-        <div class="progress-bar" style="width: 65%"></div>
+      <div class="col-md-3">
+        <div class="metric-card">
+          <div class="text-warning mb-2"><i class="fas fa-bullseye fa-2x"></i></div>
+          <h3 class="h4">0.87 PR-AUC</h3>
+          <p class="text-muted">Model Performance</p>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-warning" style="width: 87%"></div>
+          </div>
+          <small class="text-success"><i class="fas fa-arrow-up"></i> Target Exceeded</small>
+        </div>
       </div>
-      <div class="metric-status success">9% Faster</div>
+      <div class="col-md-3">
+        <div class="metric-card">
+          <div class="text-info mb-2"><i class="fas fa-bolt fa-2x"></i></div>
+          <h3 class="h4">14.5 Hours</h3>
+          <p class="text-muted">Processing Time</p>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-info" style="width: 65%"></div>
+          </div>
+          <small class="text-success"><i class="fas fa-arrow-up"></i> 9% Faster</small>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-## 🎯 Key Performance Indicators
+  <!-- Phase 1: Problem Identification -->
+  <section class="phase-section">
+    <h2 class="mb-4">🎯 Phase 1: Problem Identification</h2>
+    <div class="row">
+      <div class="col-lg-8">
+        <h4>Selected Use Case: <strong>Genomic Disease Risk Prediction</strong></h4>
+        <p class="lead">Build a polygenic risk score (PRS) model to predict individual disease susceptibility from whole-genome sequencing data.</p>
+        <div class="code-block">
+          <strong>Business Problem:</strong> "Enable early intervention and personalized treatment strategies for complex diseases by analyzing 84 million genetic variants across 2,504 global samples."
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="kpi-table">
-  <table>
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Metric</th>
-        <th>Target</th>
-        <th>Current</th>
-        <th>Status</th>
-        <th>Trend</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><i class="fas fa-brain"></i> Model Performance</td>
-        <td>PR-AUC</td>
-        <td>≥ 0.85</td>
-        <td>0.87</td>
-        <td><span class="status-badge success">Exceeded</span></td>
-        <td><i class="fas fa-arrow-up trend-up"></i></td>
-      </tr>
-      <tr>
-        <td><i class="fas fa-brain"></i> Model Performance</td>
-        <td>Recall @ 90% Precision</td>
-        <td>≥ 0.65</td>
-        <td>0.68</td>
-        <td><span class="status-badge success">Exceeded</span></td>
-        <td><i class="fas fa-arrow-up trend-up"></i></td>
-      </tr>
-      <tr>
-        <td><i class="fas fa-tachometer-alt"></i> Processing Speed</td>
-        <td>VCF to Parquet</td>
-        <td>≥ 1.0 TB/hr</td>
-        <td>1.2 TB/hr</td>
-        <td><span class="status-badge success">Exceeded</span></td>
-        <td><i class="fas fa-arrow-up trend-up"></i></td>
-      </tr>
-      <tr>
-        <td><i class="fas fa-money-bill-wave"></i> Cost Efficiency</td>
-        <td>Total Cost per Run</td>
-        <td>≤ $3,000</td>
-        <td>$2,800</td>
-        <td><span class="status-badge success">Achieved</span></td>
-        <td><i class="fas fa-arrow-down trend-down"></i></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- Phase 2: Data Sourcing -->
+  <section class="phase-section">
+    <h2 class="mb-4">📁 Phase 2: Data Sourcing</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h5><i class="fas fa-database"></i> Dataset: 1000 Genomes Project</h5>
+        <p><strong>Source:</strong> International Genome Sample Resource</p>
+        <p><strong>Direct Link:</strong> <a href="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/">FTP Repository</a></p>
+      </div>
+      <div class="col-md-6">
+        <div class="code-block">
+          <strong>Dataset Specifications:</strong><br>
+          • Samples: 2,504 individuals<br>
+          • Variants: 84,801,890<br>
+          • Populations: 26 global<br>
+          • Size: 3.8 TB (compressed)<br>
+          • Format: VCF.gz
+        </div>
+      </div>
+    </div>
+  </section>
 
-## 💰 Cost Breakdown Analysis
+  <!-- Pipeline Architecture -->
+  <section class="my-5">
+    <h2 class="text-center mb-4">🏗️ Pipeline Architecture</h2>
+    <div class="row g-3">
+      <div class="col-md-3">
+        <div class="architecture-layer">
+          <i class="fas fa-database fa-2x mb-3"></i>
+          <h5>Bronze Layer</h5>
+          <p>Raw Data</p>
+          <small>3-4 TB VCF.gz</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="architecture-layer" style="background: linear-gradient(135deg, #10b981, #059669);">
+          <i class="fas fa-shield-alt fa-2x mb-3"></i>
+          <h5>Silver Layer</h5>
+          <p>Quality Control</p>
+          <small>1.5-2 TB Parquet</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="architecture-layer" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <i class="fas fa-star fa-2x mb-3"></i>
+          <h5>Gold Layer</h5>
+          <p>Feature Engineering</p>
+          <small>500-800 GB Feather</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="architecture-layer" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+          <i class="fas fa-crown fa-2x mb-3"></i>
+          <h5>Platinum Layer</h5>
+          <p>ML Models</p>
+          <small>XGBoost + MLflow</small>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="cost-breakdown">
-  <div class="cost-chart-container">
-    <canvas id="costChart" width="400" height="200"></canvas>
-  </div>
-  
-  <div class="cost-details">
-    <div class="cost-phase">
-      <h4><i class="fas fa-cloud-download-alt"></i> Data Ingestion</h4>
-      <div class="cost-amount">$300</div>
-      <div class="cost-duration">2.5 hours</div>
-    </div>
-    
-    <div class="cost-phase">
-      <h4><i class="fas fa-filter"></i> Quality Control</h4>
-      <div class="cost-amount">$576</div>
-      <div class="cost-duration">6.0 hours</div>
-    </div>
-    
-    <div class="cost-phase">
-      <h4><i class="fas fa-cogs"></i> Feature Engineering</h4>
-      <div class="cost-amount">$576</div>
-      <div class="cost-duration">4.0 hours</div>
-    </div>
-    
-    <div class="cost-phase">
-      <h4><i class="fas fa-robot"></i> ML Training</h4>
-      <div class="cost-amount">$48</div>
-      <div class="cost-duration">2.0 hours</div>
-    </div>
-  </div>
-</div>
-
-## 🏗️ Pipeline Architecture
-
-<div class="architecture">
-  <div class="arch-layer bronze">
-    <div class="layer-icon"><i class="fas fa-database"></i></div>
-    <h3>Bronze Layer</h3>
-    <p>Raw Data Preservation</p>
-    <div class="layer-stats">
-      <span>3-4 TB</span>
-      <span>VCF.gz</span>
-    </div>
-  </div>
-  
-  <div class="arch-arrow">→</div>
-  
-  <div class="arch-layer silver">
-    <div class="layer-icon"><i class="fas fa-shield-alt"></i></div>
-    <h3>Silver Layer</h3>
-    <p>Quality Controlled</p>
-    <div class="layer-stats">
-      <span>1.5-2 TB</span>
-      <span>Parquet</span>
-    </div>
-  </div>
-  
-  <div class="arch-arrow">→</div>
-  
-  <div class="arch-layer gold">
-    <div class="layer-icon"><i class="fas fa-star"></i></div>
-    <h3>Gold Layer</h3>
-    <p>Feature Engineered</p>
-    <div class="layer-stats">
-      <span>500-800 GB</span>
-      <span>Feather</span>
-    </div>
-  </div>
-  
-  <div class="arch-arrow">→</div>
-  
-  <div class="arch-layer platinum">
-    <div class="layer-icon"><i class="fas fa-crown"></i></div>
-    <h3>Platinum Layer</h3>
-    <p>ML Models & Predictions</p>
-    <div class="layer-stats">
-      <span>MLflow</span>
-      <span>XGBoost</span>
-    </div>
-  </div>
-</div>
-
-## 🔬 Technical Specifications
-
-<div class="tech-specs">
-  <div class="spec-category">
-    <h4><i class="fas fa-server"></i> Compute Resources</h4>
-    <ul>
-      <li><strong>Spark Cluster:</strong> 50 x r6id.8xlarge</li>
-      <li><strong>Memory:</strong> 256GB per node</li>
-      <li><strong>GPU:</strong> 4 x p3.2xlarge for ML</li>
-    </ul>
-  </div>
-  
-  <div class="spec-category">
-    <h4><i class="fas fa-tools"></i> Software Stack</h4>
-    <ul>
-      <li><strong>Genomics:</strong> Hail, GATK, PLINK</li>
-      <li><strong>ML:</strong> XGBoost, Scikit-learn</li>
-      <li><strong>Orchestration:</strong> Airflow, MLflow</li>
-    </ul>
-  </div>
-  
-  <div class="spec-category">
-    <h4><i class="fas fa-chart-bar"></i> Data Metrics</h4>
-    <ul>
-      <li><strong>Variants Processed:</strong> 84M → 12.5M</li>
-      <li><strong>Samples:</strong> 2,504 → 2,467</li>
-      <li><strong>PRS Scores:</strong> 123,350 computed</li>
-    </ul>
-  </div>
 </div>
 
 <script>
-// Animate metric cards on scroll
+// Animation for metric cards
 document.addEventListener('DOMContentLoaded', function() {
   const metricCards = document.querySelectorAll('.metric-card');
   
@@ -251,232 +277,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, { threshold: 0.1 });
-  
+
   metricCards.forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
     card.style.transition = 'all 0.6s ease';
     observer.observe(card);
   });
-  
-  // Cost Chart
-  const costCtx = document.getElementById('costChart').getContext('2d');
-  new Chart(costCtx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Data Ingestion', 'Quality Control', 'Feature Engineering', 'ML Training', 'Storage'],
-      datasets: [{
-        data: [300, 576, 576, 48, 315],
-        backgroundColor: [
-          '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57'
-        ]
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }
-  });
 });
 </script>
-
-<style>
-/* Custom CSS that works with GitHub Pages */
-.hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 3rem 0;
-  text-align: center;
-  margin: -2rem -2rem 2rem -2rem;
-}
-
-.hero-content h1 {
-  margin: 0;
-  font-size: 2.5rem;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin: 1rem 0;
-}
-
-.badge-container {
-  margin: 1.5rem 0;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin: 0.25rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.badge-success { background: #10B981; }
-.badge-info { background: #3B82F6; }
-.badge-warning { background: #F59E0B; }
-.badge-danger { background: #EF4444; }
-.badge-aws { background: #FF9900; color: #000; }
-
-.dashboard {
-  margin: 3rem 0;
-}
-
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.metric-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  border-left: 4px solid #3B82F6;
-  transition: all 0.3s ease;
-}
-
-.metric-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.metric-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.metric-value {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #1F2937;
-  margin: 0.5rem 0;
-}
-
-.progress {
-  height: 8px;
-  background: #E5E7EB;
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 1rem 0;
-}
-
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #10B981, #3B82F6);
-  border-radius: 4px;
-}
-
-.metric-status {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.success { color: #10B981; }
-
-.kpi-table {
-  margin: 2rem 0;
-  overflow-x: auto;
-}
-
-.kpi-table table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.kpi-table th,
-.kpi-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #E5E7EB;
-}
-
-.kpi-table th {
-  background: #F8FAFC;
-  font-weight: 600;
-}
-
-.status-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.status-badge.success {
-  background: #D1FAE5;
-  color: #065F46;
-}
-
-.trend-up { color: #10B981; }
-.trend-down { color: #EF4444; }
-
-.architecture {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.arch-layer {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  min-width: 150px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.bronze { border-top: 4px solid #F59E0B; }
-.silver { border-top: 4px solid #9CA3AF; }
-.gold { border-top: 4px solid #FBBF24; }
-.platinum { border-top: 4px solid #10B981; }
-
-.arch-arrow {
-  font-size: 1.5rem;
-  color: #6B7280;
-}
-
-.tech-specs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.spec-category {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-  .metric-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .architecture {
-    flex-direction: column;
-  }
-  
-  .arch-arrow {
-    transform: rotate(90deg);
-  }
-}
-</style>
