@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Genomic AI Platform
-description: Enterprise Genomic Analysis | Advanced ML Pipeline
+title: Genomic Biomarker Discovery Platform
+description: Advanced Big Data & ML Pipeline for Whole Genome Sequencing
 ---
 
 <style>
@@ -27,7 +27,7 @@ description: Enterprise Genomic Analysis | Advanced ML Pipeline
 }
 
 body {
-    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--dark-bg);
     color: var(--text-primary);
     min-height: 100vh;
@@ -62,43 +62,41 @@ body {
 }
 
 .header h1 {
-    font-size: 2.8em;
+    font-size: 2.5em;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-primary);
     margin-bottom: 10px;
 }
 
 .header .subtitle {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: var(--text-secondary);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .tagline {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    padding: 20px 35px;
+    padding: 15px 30px;
     border-radius: 8px;
     color: var(--text-secondary);
     display: inline-block;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 /* Navigation */
 .nav-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 15px;
+    margin-top: 25px;
 }
 
 .nav-link {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     color: var(--text-primary);
-    padding: 12px 28px;
+    padding: 10px 24px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
@@ -108,14 +106,13 @@ body {
 .nav-link:hover {
     background: var(--accent-purple);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
 }
 
 /* Main Grid */
 .main-grid {
     display: grid;
     grid-template-columns: 1fr 400px;
-    gap: 25px;
+    gap: 20px;
     margin-bottom: 30px;
 }
 
@@ -124,28 +121,25 @@ body {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
-    padding: 30px;
+    padding: 25px;
 }
 
 .simulator h2 {
     color: var(--text-primary);
-    margin-bottom: 25px;
-    font-size: 1.4em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
 }
 
 /* Controls */
 .control-group {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .control-label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: var(--text-secondary);
 }
 
@@ -156,10 +150,9 @@ body {
 
 .slider-container {
     background: var(--darker-bg);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     border: 1px solid var(--card-border);
-    position: relative;
 }
 
 input[type="range"] {
@@ -173,18 +166,11 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: var(--accent-purple);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4);
-    transition: all 0.3s ease;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    background: var(--accent-blue);
 }
 
 /* Metrics */
@@ -192,7 +178,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .metric-card {
@@ -201,36 +187,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border-radius: 8px;
     padding: 20px;
     text-align: center;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--accent-purple);
-}
-
-.metric-card.increasing {
-    border-color: var(--accent-red);
-    animation: pulseIncrease 1s ease-in-out;
-}
-
-.metric-card.decreasing {
-    border-color: var(--accent-green);
-    animation: pulseDecrease 1s ease-in-out;
 }
 
 .metric-value {
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-weight: 700;
     margin-bottom: 5px;
-    transition: all 0.3s ease;
 }
 
 .metric-label {
@@ -241,7 +203,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .cost-value { color: var(--accent-orange); }
 .accuracy-value { color: var(--accent-green); }
 .storage-value { color: var(--accent-blue); }
-.compute-value { color: var(--accent-purple); }
 .variants-value { color: var(--accent-red); }
 
 /* Chart */
@@ -249,11 +210,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: var(--darker-bg);
     border: 1px solid var(--card-border);
     border-radius: 8px;
-    padding: 25px;
-    margin-top: 25px;
-    height: 350px;
-    position: relative;
-    overflow: hidden;
+    padding: 20px;
+    margin-top: 20px;
+    height: 300px;
 }
 
 .chart-canvas {
@@ -289,7 +248,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .accuracy {
     color: var(--accent-green);
     font-weight: 700;
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin: 10px 0;
 }
 
@@ -298,7 +257,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--card-border);
     color: var(--text-secondary);
 }
@@ -310,28 +269,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .status-value {
     color: var(--accent-green);
     font-weight: 600;
-}
-
-/* Research Metrics */
-.research-metrics {
-    background: var(--darker-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.metric-detail {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--card-border);
-    font-size: 0.9em;
-}
-
-.metric-detail:last-child {
-    border-bottom: none;
 }
 
 /* Footer */
@@ -357,42 +294,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: var(--text-primary);
     margin-bottom: 20px;
     font-size: 1.4em;
-}
-
-/* Animations */
-@keyframes pulseIncrease {
-    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-}
-
-@keyframes pulseDecrease {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-@keyframes valueChange {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.value-changing {
-    animation: valueChange 0.3s ease-in-out;
+    text-align: center;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
     .main-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .container {
-        padding: 15px;
-    }
-    
-    .metrics-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -401,16 +308,15 @@ input[type="range"]::-webkit-slider-thumb:hover {
 <div class="container">
     <!-- Header -->
     <div class="header">
-        <h1>Genomic AI Platform</h1>
-        <div class="subtitle">Enterprise Genomic Analysis | Advanced ML Pipeline</div>
+        <h1>Genomic Biomarker Discovery Platform</h1>
+        <div class="subtitle">Advanced Big Data & Machine Learning Pipeline</div>
         <div class="tagline">
-            Leveraging XGBoost and Distributed Computing to analyze 84M+ genomic features
+            Leveraging XGBoost and Distributed Computing to analyze 84M+ genomic features across 500,000 whole genome sequences
         </div>
         
         <div class="nav-links">
             <a href="#simulator" class="nav-link">Launch Simulator</a>
             <a href="#pipeline" class="nav-link">View Pipeline</a>
-            <a href="#case-study" class="nav-link">Case Study</a>
         </div>
     </div>
 
@@ -418,15 +324,15 @@ input[type="range"]::-webkit-slider-thumb:hover {
     <div class="main-grid">
         <!-- Simulator Section -->
         <div class="simulator" id="simulator">
-            <h2>🧬 Genomic Analysis Simulator</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 25px;">
-                Adjust parameters to predict computational requirements and research impact metrics.
+            <h2>Genomic Analysis Simulator</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                Adjust parameters to predict computational requirements and performance metrics.
             </p>
 
             <!-- Controls -->
             <div class="control-group">
                 <div class="control-label">
-                    <span>WGS_SAMPLES</span>
+                    <span>WGS Samples</span>
                     <span class="control-value" id="datasetValue">500K Samples</span>
                 </div>
                 <div class="slider-container">
@@ -436,7 +342,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
             <div class="control-group">
                 <div class="control-label">
-                    <span>GENOMIC_FEATURES</span>
+                    <span>Genomic Variants</span>
                     <span class="control-value" id="featureValue">84M Variants</span>
                 </div>
                 <div class="slider-container">
@@ -446,7 +352,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
             <div class="control-group">
                 <div class="control-label">
-                    <span>ANALYSIS_DEPTH</span>
+                    <span>Analysis Depth</span>
                     <span class="control-value" id="depthValue">Comprehensive</span>
                 </div>
                 <div class="slider-container">
@@ -456,98 +362,77 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
             <!-- Metrics -->
             <div class="metrics-grid">
-                <div class="metric-card" id="costCard">
-                    <div class="metric-value cost-value" id="costMetric">$12,847</div>
-                    <div class="metric-label">MONTHLY_COST</div>
+                <div class="metric-card">
+                    <div class="metric-value cost-value" id="costMetric">$18,240</div>
+                    <div class="metric-label">MONTHLY COST</div>
                 </div>
-                <div class="metric-card" id="accuracyCard">
-                    <div class="metric-value accuracy-value" id="accuracyMetric">0.81</div>
-                    <div class="metric-label">AUPRC_SCORE</div>
+                <div class="metric-card">
+                    <div class="metric-value accuracy-value" id="accuracyMetric">0.82</div>
+                    <div class="metric-label">AUPRC SCORE</div>
                 </div>
-                <div class="metric-card" id="storageCard">
-                    <div class="metric-value storage-value" id="storageMetric">2.98 PB</div>
-                    <div class="metric-label">STORAGE_NEEDED</div>
+                <div class="metric-card">
+                    <div class="metric-value storage-value" id="storageMetric">76.0 PB</div>
+                    <div class="metric-label">STORAGE NEEDED</div>
                 </div>
-                <div class="metric-card" id="variantsCard">
+                <div class="metric-card">
                     <div class="metric-value variants-value" id="variantsMetric">84M</div>
-                    <div class="metric-label">VARIANTS_CALLED</div>
+                    <div class="metric-label">VARIANTS CALLED</div>
                 </div>
             </div>
 
-            <!-- Research Impact Metrics -->
-            <div class="research-metrics">
-                <h4 style="color: var(--text-primary); margin-bottom: 15px;">RESEARCH_IMPACT</h4>
-                <div class="metric-detail">
-                    <span>Statistical Power</span>
-                    <span class="status-value" id="powerMetric">98.7%</span>
-                </div>
-                <div class="metric-detail">
-                    <span>Rare Variants (MAF < 0.01)</span>
-                    <span class="status-value" id="rareVariants">4.2M</span>
-                </div>
-                <div class="metric-detail">
-                    <span>Pathogenic Findings</span>
-                    <span class="status-value" id="pathogenicMetric">~1,240</span>
-                </div>
-                <div class="metric-detail">
-                    <span>Compute Hours Needed</span>
-                    <span class="status-value" id="computeHours">3,240</span>
-                </div>
-            </div>
-
-            <!-- New Chart: Genomic Discovery Potential -->
+            <!-- Chart -->
             <div class="chart-container">
-                <canvas id="discoveryChart" class="chart-canvas"></canvas>
+                <canvas id="performanceChart" class="chart-canvas"></canvas>
             </div>
         </div>
 
         <!-- Info Panel -->
         <div class="info-panel">
             <div class="model-info">
-                <div class="model-badge">MODEL: XGBOOST_V4_GENOMICS</div>
+                <div class="model-badge">MODEL: XGBOOST GENOMICS</div>
                 <div class="accuracy">ACCURACY: 0.94 AUPRC</div>
                 <div style="color: var(--text-muted); font-size: 0.9em;">
-                    Optimized for polygenic risk prediction
+                    Optimized for genomic feature analysis
                 </div>
             </div>
 
             <div style="margin-bottom: 25px;">
-                <h3 style="color: var(--text-primary); margin-bottom: 15px;">GENOMIC_STATISTICS</h3>
+                <h3 style="color: var(--text-primary); margin-bottom: 15px;">SYSTEM STATUS</h3>
                 <div class="status-item">
-                    <span>Coverage Depth</span>
-                    <span class="status-value">30x</span>
+                    <span>Cluster Ready</span>
+                    <span class="status-value">ACTIVE</span>
                 </div>
                 <div class="status-item">
-                    <span>Variant Call Rate</span>
-                    <span class="status-value">99.2%</span>
+                    <span>GPU Acceleration</span>
+                    <span class="status-value">ENABLED</span>
                 </div>
                 <div class="status-item">
-                    <span>QC Pass Rate</span>
-                    <span class="status-value">97.8%</span>
+                    <span>Data Stream</span>
+                    <span class="status-value">LIVE</span>
                 </div>
                 <div class="status-item">
-                    <span>Annotation Complete</span>
-                    <span class="status-value">100%</span>
+                    <span>Model Training</span>
+                    <span class="status-value">OPTIMAL</span>
                 </div>
             </div>
 
             <div>
-                <h3 style="color: var(--text-primary); margin-bottom: 15px;">CLINICAL_METRICS</h3>
+                <h3 style="color: var(--text-primary); margin-bottom: 15px;">RESEARCH METRICS</h3>
                 <div class="status-item">
-                    <span>Disease Associations</span>
-                    <span class="status-value">142</span>
+                    <span>Statistical Power</span>
+                    <span class="status-value">98.7%</span>
                 </div>
                 <div class="status-item">
-                    <span>Drug Targets</span>
-                    <span class="status-value">67</span>
+                    <span>Rare Variants</span>
+                    <span class="status-value">4.2M</span>
                 </div>
                 <div class="status-item">
-                    <span>Biomarkers Found</span>
-                    <span class="status-value">89</span>
+                    <span>Compute Hours</span>
+                    <span class="status-value">3,240</span>
                 </div>
                 <div class="status-item">
-                    <span>Heritability Explained</span>
-                    <span class="status-value">38%</span>
+                    <span>Clinical Findings</span>
+                    <span class="status-value">1,240</span>
                 </div>
             </div>
         </div>
@@ -555,17 +440,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
     <!-- Pipeline Section -->
     <div class="pipeline-section" id="pipeline">
-        <h2 class="pipeline-title">GENOMIC_ANALYSIS_PIPELINE</h2>
+        <h2 class="pipeline-title">Genomic Analysis Pipeline Architecture</h2>
         <div class="mermaid">
 graph TD
-    A[FASTQ Raw Sequences<br/>~300GB/sample] --> B[Alignment & QC<br/>BWA-MEM, FastQC]
-    B --> C[Variant Calling<br/>GATK, FreeBayes]
-    C --> D[Variant Annotation<br/>VEP, ANNOVAR]
-    D --> E[Quality Filtering<br/>VQSR, Hard Filters]
-    E --> F[Feature Matrix<br/>84M variants × 500K samples]
-    F --> G[ML Training<br/>XGBoost, Spark ML]
-    G --> H[Risk Prediction<br/>Polygenic Scores]
-    H --> I[Biomarker Discovery<br/>GWAS, PRS]
+    A[UK Biobank Raw Data<br/>500,000 WGS Samples] --> B[Quality Control & Alignment<br/>FastQC, BWA-MEM]
+    B --> C[Variant Calling<br/>GATK, DeepVariant]
+    C --> D[Variant Annotation<br/>VEP, SnpEff]
+    D --> E[Feature Engineering<br/>Spark ML, 84M Features]
+    E --> F[Model Training<br/>XGBoost, GPU Cluster]
+    F --> G[Biomarker Discovery<br/>GWAS, PRS Analysis]
+    G --> H[Clinical Interpretation<br/>Risk Scores, Reports]
     
     style A fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style B fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
@@ -575,48 +459,38 @@ graph TD
     style F fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style G fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style H fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
-    style I fill:#1a1a2e,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
         </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        CONFIDENTIAL • ACADEMIC SUBMISSION 2024 • LEAD GENOMIC ARCHITECT
+        CONFIDENTIAL • ACADEMIC SUBMISSION 2024 • LEAD DATA ARCHITECT
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Store previous values for animation
-let previousValues = {
-    cost: 12847,
-    accuracy: 0.81,
-    storage: 2.98,
-    variants: 84000000
-};
-
-// Initialize Discovery Chart
-const ctx = document.getElementById('discoveryChart').getContext('2d');
-let discoveryChart;
+// Initialize Chart
+const ctx = document.getElementById('performanceChart').getContext('2d');
+let performanceChart;
 
 function initializeChart() {
-    discoveryChart = new Chart(ctx, {
+    performanceChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Common Variants', 'Rare Variants', 'Structural Variants', 'Novel Findings', 'Clinical Actionable'],
+            labels: ['Storage Cost', 'Compute Cost', 'ML Training', 'Data Transfer', 'Management'],
             datasets: [{
-                label: 'Discovery Potential',
-                data: [65, 23, 8, 3, 1],
+                label: 'Cost Breakdown ($)',
+                data: [7600, 6840, 2850, 950, 0],
                 backgroundColor: [
                     '#8b5cf6',
-                    '#3b82f6', 
-                    '#10b981',
+                    '#3b82f6',
+                    '#10b981', 
                     '#f59e0b',
                     '#ef4444'
                 ],
                 borderColor: '#1a1a2e',
-                borderWidth: 2,
-                borderRadius: 6
+                borderWidth: 2
             }]
         },
         options: {
@@ -625,20 +499,14 @@ function initializeChart() {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 100,
                     grid: {
                         color: 'rgba(255,255,255,0.1)'
                     },
                     ticks: {
                         color: '#94a3b8',
                         callback: function(value) {
-                            return value + '%';
+                            return '$' + value.toLocaleString();
                         }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Discovery Percentage',
-                        color: '#cbd5e1'
                     }
                 },
                 x: {
@@ -653,41 +521,34 @@ function initializeChart() {
             plugins: {
                 legend: {
                     display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return context.parsed.y + '% of significant findings';
-                        }
-                    }
                 }
             }
         }
     });
 }
 
-// Precise storage calculations for WGS data
+// Precise storage calculation for 500K WGS samples
 function calculateStorage(samples, analysisDepth) {
-    // WGS storage breakdown (more realistic)
-    const rawFastqPerSample = 100; // GB per sample (compressed FASTQ)
-    const bamFilesPerSample = 50;  // GB per sample (aligned BAM)
-    const vcfFilesPerSample = 2;   // GB per sample (compressed VCF)
-    const processedDataPerSample = 5; // GB per sample (processed matrices)
+    // Realistic WGS storage requirements
+    const rawFastqPerSample = 150;  // GB per sample (compressed FASTQ)
+    const bamFilesPerSample = 80;   // GB per sample (aligned BAM, compressed)
+    const vcfFilesPerSample = 3;    // GB per sample (variant calls)
+    const processedDataPerSample = 10; // GB per sample (feature matrices, annotations)
     
-    let totalStorage = 0;
+    let totalStorageGB = 0;
     
-    if (analysisDepth === 1) { // Basic analysis
-        totalStorage = samples * (rawFastqPerSample + bamFilesPerSample) / 1000; // Convert to TB
-    } else if (analysisDepth === 2) { // Comprehensive analysis
-        totalStorage = samples * (rawFastqPerSample + bamFilesPerSample + vcfFilesPerSample) / 1000;
-    } else { // Advanced analysis (includes all processed data)
-        totalStorage = samples * (rawFastqPerSample + bamFilesPerSample + vcfFilesPerSample + processedDataPerSample) / 1000;
+    if (analysisDepth === 1) { // Basic: FASTQ + BAM only
+        totalStorageGB = samples * (rawFastqPerSample + bamFilesPerSample);
+    } else if (analysisDepth === 2) { // Comprehensive: All data
+        totalStorageGB = samples * (rawFastqPerSample + bamFilesPerSample + vcfFilesPerSample + processedDataPerSample);
+    } else { // Advanced: Plus additional analyses
+        totalStorageGB = samples * (rawFastqPerSample + bamFilesPerSample + vcfFilesPerSample + processedDataPerSample + 5);
     }
     
-    return totalStorage / 1000; // Convert TB to PB
+    return totalStorageGB / 1000000; // Convert to PB
 }
 
-// Update simulator values with precise calculations
+// Update simulator
 function updateSimulator() {
     const samples = parseInt(document.getElementById('datasetScale').value);
     const features = parseInt(document.getElementById('featureComplexity').value);
@@ -702,73 +563,33 @@ function updateSimulator() {
     
     // Precise calculations
     const storagePB = calculateStorage(samples, depth);
-    const baseCost = (samples * 0.015) + (features * 0.0000003) + (storagePB * 3500) + (depth * 800);
-    const cost = Math.round(baseCost);
-    const accuracy = 0.70 + (samples/1500000) - (features/400000000) + (depth * 0.05);
-    const statisticalPower = 85 + (samples/20000) + (depth * 4);
-    const rareVariants = Math.round(features * 0.05); // 5% are rare variants
-    const pathogenicFindings = Math.round(samples * 0.0025); // 0.25% have pathogenic variants
-    const computeHours = samples * 0.006 + features * 0.0000001 + depth * 200;
+    const storageCost = storagePB * 100; // $100 per PB/month
+    const computeCost = (samples * 0.012) + (features * 0.0000002);
+    const mlCost = (samples * 0.004) + (features * 0.0000001);
+    const dataTransferCost = storagePB * 12.5;
     
-    // Update metrics with animations
-    updateMetricWithAnimation('costMetric', cost, previousValues.cost, 'costCard', '$');
-    updateMetricWithAnimation('accuracyMetric', accuracy, previousValues.accuracy, 'accuracyCard', '', 2);
-    updateMetricWithAnimation('storageMetric', storagePB, previousValues.storage, 'storageCard', '', 2, ' PB');
-    updateMetricWithAnimation('variantsMetric', features, previousValues.variants, 'variantsCard', '', 0, '', true);
+    const totalCost = Math.round(storageCost + computeCost + mlCost + dataTransferCost);
+    const accuracy = 0.75 + (samples/2000000) - (features/500000000) + (depth * 0.035);
     
-    // Update research metrics
-    document.getElementById('powerMetric').textContent = Math.min(99.9, statisticalPower).toFixed(1) + '%';
-    document.getElementById('rareVariants').textContent = (rareVariants/1000000).toFixed(1) + 'M';
-    document.getElementById('pathogenicMetric').textContent = '~' + pathogenicFindings.toLocaleString();
-    document.getElementById('computeHours').textContent = Math.round(computeHours).toLocaleString();
+    // Update metrics
+    document.getElementById('costMetric').textContent = '$' + totalCost.toLocaleString();
+    document.getElementById('accuracyMetric').textContent = Math.max(0.7, Math.min(0.95, accuracy)).toFixed(2);
+    document.getElementById('storageMetric').textContent = storagePB.toFixed(1) + ' PB';
+    document.getElementById('variantsMetric').textContent = (features/1000000).toFixed(0) + 'M';
     
-    // Store current values
-    previousValues = { cost, accuracy, storage: storagePB, variants: features };
-    
-    // Update chart based on sample size
-    updateChart(samples);
+    // Update chart
+    updateChart(storageCost, computeCost, mlCost, dataTransferCost);
 }
 
-function updateMetricWithAnimation(elementId, newValue, oldValue, cardId, prefix = '', decimals = 0, suffix = '', compact = false) {
-    const element = document.getElementById(elementId);
-    const card = document.getElementById(cardId);
-    
-    // Add animation class based on value change
-    if (newValue > oldValue) {
-        card.classList.add('increasing');
-        setTimeout(() => card.classList.remove('increasing'), 1000);
-    } else if (newValue < oldValue) {
-        card.classList.add('decreasing');
-        setTimeout(() => card.classList.remove('decreasing'), 1000);
-    }
-    
-    // Add value change animation
-    element.classList.add('value-changing');
-    setTimeout(() => element.classList.remove('value-changing'), 300);
-    
-    // Update value
-    let formattedValue;
-    if (compact && newValue >= 1000000) {
-        formattedValue = (newValue/1000000).toFixed(1) + 'M';
-    } else {
-        formattedValue = decimals > 0 ? newValue.toFixed(decimals) : newValue.toLocaleString();
-    }
-    element.textContent = prefix + formattedValue + suffix;
-}
-
-function updateChart(samples) {
-    // Update discovery potential based on sample size
-    const sampleFactor = Math.min(1, samples / 500000);
-    
-    discoveryChart.data.datasets[0].data = [
-        65 * sampleFactor,
-        23 * (0.5 + sampleFactor * 0.5),
-        8 * (0.3 + sampleFactor * 0.7),
-        3 * (0.1 + sampleFactor * 0.9),
-        1 * (0.05 + sampleFactor * 0.95)
+function updateChart(storageCost, computeCost, mlCost, dataTransferCost) {
+    performanceChart.data.datasets[0].data = [
+        Math.round(storageCost),
+        Math.round(computeCost),
+        Math.round(mlCost),
+        Math.round(dataTransferCost),
+        0
     ];
-    
-    discoveryChart.update('none');
+    performanceChart.update();
 }
 
 // Initialize
