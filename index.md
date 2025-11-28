@@ -572,22 +572,67 @@ body {
             <div class="diagram-container">
                 <div class="mermaid">
 graph TD
-    A[UK Biobank Raw Data<br/>500,000 WGS Samples] --> B[Quality Control & Alignment<br/>FastQC, BWA-MEM]
-    B --> C[Variant Calling<br/>GATK, DeepVariant]
-    C --> D[Variant Annotation<br/>VEP, SnpEff]
-    D --> E[Feature Engineering<br/>Spark ML, 84M Features]
-    E --> F[Model Training<br/>XGBoost, GPU Cluster]
-    F --> G[Biomarker Discovery<br/>GWAS, PRS Analysis]
-    G --> H[Clinical Interpretation<br/>Risk Scores, Reports]
+    A[UK Biobank Raw Data] --> B[Cloud Storage - AWS S3]
+    B --> C[Data Processing - Apache Spark]
+    C --> D[Feature Engineering - Spark ML]
+    D --> E[Model Training - XGBoost]
+    E --> F[Results & Interpretation]
     
+    subgraph A_details
+        A1[500,000 WGS Samples]
+        A2[15+ Petabytes]
+        A3[84M Features]
+    end
+    
+    subgraph B_details
+        B1[VCF/BAM Files]
+        B2[Phenotype Data]
+        B3[Clinical Records]
+    end
+    
+    subgraph C_details
+        C1[Quality Control]
+        C2[Variant Calling]
+        C3[Data Integration]
+    end
+    
+    subgraph D_details
+        D1[Variant Filtering]
+        D2[GWAS Pre-filtering]
+        D3[Biological Annotation]
+    end
+    
+    subgraph E_details
+        E1[Stratified Sampling]
+        E2[Hyperparameter Tuning]
+        E3[Cross-Validation]
+    end
+    
+    subgraph F_details
+        F1[Biomarker Discovery]
+        F2[Risk Scores]
+        F3[Clinical Reports]
+    end
+    
+    A --> A_details
+    B --> B_details
+    C --> C_details
+    D --> D_details
+    E --> E_details
+    F --> F_details
+
     style A fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style B fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style C fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style D fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style E fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
     style F fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
-    style G fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
-    style H fill:#1a1a1a,stroke:#8b5cf6,stroke-width:2px,color:#ffffff
+    style A_details fill:#9F7AEA,stroke:#805AD5,stroke-width:1px,color:#ffffff
+    style B_details fill:#9F7AEA,stroke:#805AD5,stroke-width:1px,color:#ffffff
+    style C_details fill:#9F7AEA,stroke:#805AD5,stroke-width:1px,color:#ffffff
+    style D_details fill:#9F7AEA,stroke:#805AD5,stroke-width:1px,color:#ffffff
+    style E_details fill:#9F7AEA,stroke:#805AD5,stroke-width:1px,color:#ffffff
+    style F_details fill:#9F7AEA,stroke:#805AD5,stroke-width:1px,color:#ffffff
                 </div>
             </div>
         </div>
