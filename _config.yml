@@ -1,15 +1,20 @@
-# _config.yml - THE ONLY Jekyll config file
-title: "Genomic Research Pipeline"
-description: "Cloud-Native Solution for Large-Scale Disease Risk Prediction"
+# _config.yml
+title: "🧬 Genomic Research Pipeline"
+description: "Cloud-Native High-Throughput Genomic Analysis"
 theme: jekyll-theme-cayman
-show_downloads: true
+remote_theme: pages-themes/cayman@v0.2.0
 
-# Custom variables that can be used in templates
+# Enable customizations
+plugins:
+  - jekyll-remote-theme
+
+# Custom variables
 pipeline_version: "2.1.0"
-repository_url: "https://github.com/yourusername/your-repo"
+github_username: "your-username"
+repo_name: "your-repo-name"
 
-# Exclude these files from processing
+# Exclude from processing
 exclude:
-  - "node_modules"
-  - "*.yml"  # Exclude all YAML files from Jekyll processing
-  - "*.yaml"
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
