@@ -22,7 +22,7 @@ description: "Cloud-Native Solution for Large-Scale Disease Risk Prediction"
   </div>
 </div>
 
-## 📊 Live Performance Dashboard
+## Performance Dashboard
 
 <div class="dashboard">
   <div class="metric-grid">
