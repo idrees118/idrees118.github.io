@@ -1,100 +1,66 @@
-# Genomic Research Pipeline for Large-Scale Disease Risk Prediction
-
-![Data Processed](https://img.shields.io/badge/Data%20Processed-3TB-blue)
-![Model PR-AUC](https://img.shields.io/badge/PR--AUC-0.85-green)
-![Population](https://img.shields.io/badge/Populations-26-lightgrey)
+# 🧬🌐 High-Throughput Genomic Research Pipeline for Large-Scale Disease Risk Prediction: A Cloud-Native Solution
 
 ---
 
-## Abstract
-Whole-genome sequencing (WGS) has transformed biomedical research by enabling high-resolution characterization of genetic variation across global populations. However, the sheer scale, heterogeneity, and computational intensity of genomic datasets—often spanning terabytes of raw variant information—present significant challenges for downstream disease-risk prediction.  
-
-This research develops a scalable **Big Data + Machine Learning pipeline** that processes **3–4 TB of variant call data** from the 1000 Genomes Project, performs distributed quality control and functional annotation, and constructs polygenic risk–based disease prediction models. By integrating Spark-based distributed computing with XGBoost classification and Polygenic Risk Scoring (PRS), the pipeline demonstrates a robust framework for disease risk stratification at population scale.  
+## 🚀 Executive Summary
+The rapid accumulation of terabyte-scale Whole-Genome Sequencing (WGS) data necessitates a paradigm shift in processing architecture. This document proposes a **Cloud-Native Big Data and Machine Learning Pipeline** engineered to transform $\sim4\text{TB}$ of raw VCF data from the 1000 Genomes Project into clinically relevant Polygenic Risk Score (PRS) models. Leveraging **Apache Spark** for distributed data ingestion and **XGBoost** for classification, this solution achieves high scalability and robust predictive power while mitigating population confounding. The estimated **Total Cost of Ownership (TCO)** for a single full-scale run is $\mathbf{\$2,500 - \$4,000}$, with a target **Key Performance Indicator (KPI)** of $\ge 0.85$ PR-AUC on disease classification. This pipeline sets a new standard for precision medicine research at a population scale.
 
 ---
 
-## 1. Introduction
-Advances in genomic sequencing technologies have allowed biologists and clinicians to access unprecedented amounts of genetic information. Despite this progress, transforming raw variant data into clinically actionable disease-risk insights remains a major computational barrier.  
-
-This project proposes a **complete Big Data–driven research pipeline** integrating distributed variant processing, population stratification, functional annotation, polygenic modeling, and ML-based disease-risk prediction. The solution is architected for **scalability, reproducibility, and interpretability**.
+## 1. Introduction & Scientific Context
+Advances in Next-Generation Sequencing (NGS) have outpaced the computational capacity of conventional analytical platforms. The challenge lies in integrating petabytes of genomic data into **actionable clinical insights**. This project introduces a **Distributed-Genomics Framework (D-GeF)** that overcomes the computational bottlenecks associated with $p \gg n$ data structures (where variants $p \approx 84 \text{M}$ and samples $n \approx 2.5\text{K}$) by enforcing cloud-scale parallelism from ingestion through modeling. 
 
 ---
 
-## 2. Research Problem and Motivation
+## 2. Research Problem & Business Imperative 🎯
 
-### 2.1 Problem Statement
-Whole-genome datasets from projects like the 1000 Genomes Initiative contain:
-
-- 3–4 TB of VCF files  
-- 84+ million SNPs and indels  
-- Thousands of globally diverse individuals  
-
-Challenges in extracting disease-relevant signals:
-
-<div style="background-color:#fff3cd; padding:10px; border-radius:6px;">
-- Slow and memory-intensive preprocessing tools  
-- High dimensionality (p >> n)  
-- Population stratification biases predictions  
-- Need for biologically interpretable models  
-</div>
+### 2.1 Problem Statement (The $\mathbf{4\text{TB}}$ Challenge)
+Whole-genome datasets are limited by **I/O bottlenecks**, **memory pressure**, and **linear processing**. Extracting disease risk signals from the 1000 Genomes dataset (84M variants across 2504 global samples, $3\text{–}4\text{TB}$ VCF) requires **terabyte-level I/O optimization** and complex **population structure correction** to ensure model generalization.
 
 ### 2.2 Research Motivation
-Clinical applications require:
-
-<div style="background-color:#d1ecf1; padding:10px; border-radius:6px;">
-- Scalable pipelines for terabyte-level data  
-- Biologically interpretable predictive features (PRS, GWAS signals)  
-- Robust modeling to mitigate population confounding  
-</div>
-
-This work constructs a reproducible, **high-performance genomic ML pipeline**.
+Clinical applications require a system designed for:
+1.  **Scalability and Efficiency:** Handling terabyte-level data with minimal latency and **TCO** optimization.
+2.  **Robustness:** Modeling strategies that effectively mitigate **Population Stratification** confounding.
+3.  **Interpretability:** Generating biologically validated features (e.g., PRS) for translational medicine.
 
 ---
 
-## 3. Dataset Description
+## 3. Cloud-Native Pipeline Architecture ☁️
 
-### 3.1 Source
-**1000 Genomes Project**  
+### 3.1 Architecture Components: The Data Flow Perspective
+The pipeline follows a multi-stage **Medallion Architecture (Bronze-Silver-Gold)** on AWS (or equivalent cloud platform).
 
-- FTP and AWS Open Data mirrors  
-- 2504 individuals across 26 ancestral populations  
-- 84.4 million variants (SNPs + indels)  
-- Format: VCF  
-- Size: 3–4 TB  
+| Layer | Component/Format | **Key Processes** | Scalability Driver |
+|:---:|:---:|:---:|:---:|
+| **Bronze (Raw)** | **S3 Raw Zone** $\rightarrow$ VCF.GZ | Parallel Ingestion $\rightarrow$ VCF to DataFrame Conversion | **AWS Transfer Acceleration** |
+| **Silver (Cleaned)** | **S3 Staging Zone** $\rightarrow$ **Apache Parquet** (Columnar) | Distributed QC (MAF, HWE), Sample Pruning (PCA) | **Spark/Databricks Cluster** |
+| **Gold (Feature)** | **S3 Feature Store** $\rightarrow$ Parquet/Feather | **Feature Engineering:** PRS, Functional Annotation, Normalization | **Pre-computed Lookups** |
+| **Gold (ML)** | **S3 Model Registry** $\rightarrow$ **XGBoost Artifacts** | Hyperparameter Tuning, Cross-Validation, **Prediction** | **Optimized GPU Instances** |
 
-### 3.2 Big Data Qualification
-Processing requires:
+### 3.2 Workflow Orchestration (`pipeline_config.yml`)
+The entire process is managed via an orchestration engine (e.g., **Apache Airflow** or **Prefect**). Below is an illustrative YAML configuration snippet defining the task dependencies and resource allocation for the core ETL stages.
 
-<div style="background-color:#e2f0d9; padding:10px; border-radius:6px;">
-- Distributed compute clusters  
-- Parallel chromosome-level processing  
-- Efficient columnar storage (Parquet)  
-</div>
-
----
-
-## 4. Big Data Pipeline Architecture
-
-### 4.1 High-Level Pipeline Flow
-
-```mermaid
-flowchart LR
-    A[Raw VCF Files] --> B[QC & Filtering]
-    B --> C[Functional Annotation]
-    C --> D[PRS Computation]
-    D --> E[XGBoost Model]
-    E --> F[Risk Prediction & Dashboard]
-
----
-
-✅ **Features I added:**  
-- Colored callout boxes for **ingestion type, QC, ML, KPIs**  
-- Badges for metrics  
-- Mermaid diagram for pipeline  
-- All sections in **one page ready to paste**  
-
----
-
-If you want, I can also **add different highlight colors for all types of data ingestion separately** (like FTP, AWS, streaming, etc.) to make it visually pop even more.  
-
-Do you want me to do that too?
+```yaml
+pipeline:
+  name: "GenomicRiskPrediction_v1"
+  environment: "AWS_EMR_Cluster"
+  config:
+    memory_gb: 256
+    vcores: 32
+  stages:
+    - name: "Bronze_Ingestion"
+      task: "spark.vcf_to_parquet"
+      input_path: "s3://1000g-raw-zone/*.vcf.gz"
+      output_path: "s3://silver-staging/genotypes"
+      resources: {nodes: 50, driver_memory: "64g"}
+    
+    - name: "Silver_QC"
+      task: "spark.variant_qc_filter"
+      dependencies: ["Bronze_Ingestion"]
+      parameters: {maf_threshold: 0.01, hwe_p_value: 1e-6}
+      output_path: "s3://silver-staging/filtered_variants"
+      
+    - name: "Gold_Feature_Engineering"
+      task: "spark.prs_computation"
+      dependencies: ["Silver_QC"]
+      output_path: "s3://gold-feature-store/prs_matrix"
