@@ -18,7 +18,7 @@
 
 ---
 
-## 📖 Executive Summary
+## Executive Summary
 
 The **Genomic Biomarker Discovery Platform** addresses the critical infrastructure bottleneck in population-scale genomics (e.g., **UK Biobank**, **All of Us**).
 
@@ -28,7 +28,7 @@ This project demonstrates a **Modern Data Lakehouse** approach, achieving a **94
 
 ---
 
-## 📊 Dataset Scale & "Real-World" Context
+## Dataset Scale & "Real-World" Context
 
 To understand the cost model, one must first appreciate the sheer magnitude of the data being simulated.
 
@@ -41,7 +41,7 @@ To understand the cost model, one must first appreciate the sheer magnitude of t
 
 ---
 
-## 💰 Financial Impact Analysis
+## Financial Impact Analysis
 
 A key output of this simulator is the **Total Estimated Monthly Cost** (~$88,000). While high in absolute terms, it represents extreme efficiency compared to legacy models.
 
@@ -55,12 +55,12 @@ A key output of this simulator is the **Total Estimated Monthly Cost** (~$88,000
 | **Monthly Bill** | ~$1,500,000 | **~$88,000** | **94% Reduction** |
 | **Cost Per Patient** | $3.00 / month | **$0.17 / month** | **Best-in-Class** |
 
-> **💡 Strategic Research Insight:**
+> ** Strategic Research Insight:**
 > Managing a genomic asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of just **0.035% per month** demonstrates extreme financial viability for large-scale longitudinal studies.
 
 ---
 
-## ⚡ Technical Optimization Strategies
+##  Technical Optimization Strategies
 
 Here is exactly what we used to achieve these savings:
 
@@ -78,7 +78,7 @@ Here is exactly what we used to achieve these savings:
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 The simulation logic is based on a production-grade **AWS Genomic Data Lake** pipeline.
 
