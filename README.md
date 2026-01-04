@@ -85,19 +85,19 @@ The simulation logic is based on a production-grade **AWS Genomic Data Lake** pi
 ```mermaid
 graph TB
     %% Nodes
-    subgraph Cold_Layer [🔵 Cold Storage Layer (Archival)]
+    subgraph Cold_Layer ["🔵 Cold Storage Layer (Archival)"]
         A[Raw Sequencing Data] -->|FASTQ/CRAM| B[AWS Glacier Deep Archive]
         B -->|Cost Basis| C["$0.00099 / GB"]
     end
     
-    subgraph Hot_Layer [🟠 Hot Analytical Layer (Active)]
+    subgraph Hot_Layer ["🟠 Hot Analytical Layer (Active)"]
         B -.->|Spark ETL| D[Delta Lake Storage]
         D -->|Format| E[Compressed Parquet]
         E -->|Cost Basis| F["$0.023 / GB"]
         E -.->|Optimization| G[10x Compression vs VCF]
     end
     
-    subgraph Compute_Layer [🟢 Discovery Layer (Compute)]
+    subgraph Compute_Layer ["🟢 Discovery Layer (Compute)"]
         E --> H[Distributed XGBoost]
         H -->|Hardware| I[NVIDIA A100 Cluster]
         I -->|Scaling| J[Spot Instances]
