@@ -6,13 +6,13 @@
 [![Architecture](https://img.shields.io/badge/Architecture-Data_Lakehouse-8A2BE2?style=for-the-badge&logo=apache-spark)](https://spark.apache.org/)
 [![Scale](https://img.shields.io/badge/Scale-Petabyte_Class-2ea44f?style=for-the-badge&logo=amazonaws)](https://aws.amazon.com/)
 [![Domain](https://img.shields.io/badge/Domain-Precision_Medicine-007EC6?style=for-the-badge&logo=dna)](https://www.genome.gov/)
-[![Status](https://img.shields.io/badge/Status-Academic_Research-orange?style=for-the-badge)](https://github.com/)
+[![Demo](https://img.shields.io/badge/Live_Demo-View_Project-FF4500?style=for-the-badge&logo=github)](https://idrees118.github.io/)
 
 <br />
 
 **A simulation engine modeling the computational physics and financial unit economics of processing 500,000+ Whole Genome Sequences.**
 
-[View Demo](index.html) · [Report Bug](issues) · [Request Feature](issues)
+[View Live Demo](https://idrees118.github.io/) · [Report Bug](https://github.com/idrees118/genomic-discovery-platform/issues)
 
 </div>
 
@@ -45,17 +45,36 @@ To understand the cost model, one must first appreciate the sheer magnitude of t
 
 A key output of this simulator is the **Total Estimated Monthly Cost** (~$88,000). While high in absolute terms, it represents extreme efficiency compared to legacy models.
 
-### 🔴 Legacy vs. 🟢 Modern Architecture
+### Legacy vs. Modern Architecture Comparison
 
 | Cost Component | Legacy Model (Standard) | Our Lakehouse Model | Efficiency Gain |
 | :--- | :--- | :--- | :--- |
-| **Storage Strategy** | All data in S3 Standard | 🔴 Hot + 🔵 Deep Archive | **95% Savings** |
-| **Data Format** | Raw VCF (Text) | 🟢 Parquet (Binary) | **90% Compression** |
-| **Compute Strategy** | On-Demand Instances | 🟢 Spot Instances | **70% Savings** |
-| **Monthly Bill** | `~$1,500,000` | `~$88,000` | **94% Reduction** |
+| **Storage Strategy** | All data in S3 Standard | **Tiered (Hot + Deep Archive)** | **95% Savings** |
+| **Data Format** | Raw VCF (Text) | **Parquet (Binary)** | **90% Compression** |
+| **Compute Strategy** | On-Demand Instances | **Spot Instances** | **70% Savings** |
+| **Monthly Bill** | ~$1,500,000 | **~$88,000** | **94% Reduction** |
+| **Cost Per Patient** | $3.00 / month | **$0.17 / month** | **Best-in-Class** |
 
-### 💡 Strategic Research Insight
-> **Managing a genomic asset value of $250 Million (the sequencing cost of 500k genomes) for an operational cost of just 0.035% per month demonstrates extreme financial viability for large-scale longitudinal studies.**
+> **💡 Strategic Research Insight:**
+> Managing a genomic asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of just **0.035% per month** demonstrates extreme financial viability for large-scale longitudinal studies.
+
+---
+
+## ⚡ Technical Optimization Strategies
+
+Here is exactly what we used to achieve these savings:
+
+### 1. Intelligent Storage Tiering (Hot vs. Cold)
+* **The Problem:** Storing 15 Petabytes of raw sequencing data (CRAM files) in standard cloud storage is prohibitively expensive ($0.023/GB).
+* **Our Solution:** We moved 97% of the data (the raw reads) to **AWS Glacier Deep Archive** ($0.00099/GB), which is 23x cheaper. We only keep the "Hot" analytical data (variants) in expensive storage.
+
+### 2. Columnar Compression (Parquet vs. VCF)
+* **The Problem:** Genomic data usually comes in VCF format, which is a bloated text file.
+* **Our Solution:** We utilized **Apache Parquet**, a binary columnar format. This compresses genomic data by **10-20x** compared to text, drastically reducing the storage footprint and speeding up queries.
+
+### 3. Spot Instance Computing
+* **The Problem:** Running high-performance GPU clusters for weeks costs a fortune.
+* **Our Solution:** The pipeline is designed to be fault-tolerant, allowing us to use **Spot Instances** (spare cloud capacity) which are **60-70% cheaper** than standard on-demand servers.
 
 ---
 
@@ -65,20 +84,30 @@ The simulation logic is based on a production-grade **AWS Genomic Data Lake** pi
 
 ```mermaid
 graph TB
-    subgraph "Ingestion Layer (Cold)"
+    %% Nodes
+    subgraph Cold_Layer [🔵 Cold Storage Layer (Archival)]
         A[Raw Sequencing Data] -->|FASTQ/CRAM| B[AWS Glacier Deep Archive]
         B -->|Cost Basis| C["$0.00099 / GB"]
     end
     
-    subgraph "Analytical Layer (Hot)"
+    subgraph Hot_Layer [🟠 Hot Analytical Layer (Active)]
         B -.->|Spark ETL| D[Delta Lake Storage]
         D -->|Format| E[Compressed Parquet]
         E -->|Cost Basis| F["$0.023 / GB"]
         E -.->|Optimization| G[10x Compression vs VCF]
     end
     
-    subgraph "Discovery Layer (Compute)"
+    subgraph Compute_Layer [🟢 Discovery Layer (Compute)]
         E --> H[Distributed XGBoost]
         H -->|Hardware| I[NVIDIA A100 Cluster]
         I -->|Scaling| J[Spot Instances]
     end
+
+    %% Styles
+    classDef cold fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef hot fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef compute fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
+
+    class A,B,C cold;
+    class D,E,F,G hot;
+    class H,I,J compute;
