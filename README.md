@@ -3,8 +3,6 @@
 # 🧬 Genomic Biomarker Discovery Platform
 ### Enterprise-Scale Genomic Data Lakehouse & Cost Simulation Engine
 
-[![Architecture](https://img.shields.io/badge/Architecture-Data_Lakehouse-8A2BE2?style=for-the-badge&logo=apache-spark)](https://spark.apache.org/)
-[![Scale](https://img.shields.io/badge/Scale-Petabyte_Class-2ea44f?style=for-the-badge&logo=amazonaws)](https://aws.amazon.com/)
 [![Domain](https://img.shields.io/badge/Domain-Precision_Medicine-007EC6?style=for-the-badge&logo=dna)](https://www.genome.gov/)
 [![Demo](https://img.shields.io/badge/Live_Demo-View_Project-FF4500?style=for-the-badge&logo=github)](https://idrees118.github.io/)
 
