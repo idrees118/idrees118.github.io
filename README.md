@@ -35,11 +35,12 @@ The simulator reflects **realistic sequencing volumes, formats, and access patte
 | Metric | Value | Description |
 |------|------|------------|
 | **Cohort Size** | 500,000 | Individuals with 30× WGS coverage |
-| **Variant Complexity** | 84 million | Unique variants per individual |
+| **Variant Complexity** | 84 Million | Unique variants per individual |
+| **Total Data Points** | **42 Trillion** | **Genotype matrix elements ($N \times M$)** |
 | **Raw Data Volume** | 15.4 PB | FASTQ / BAM / CRAM (archival) |
 | **Active Analytical Data** | ~400 TB | Optimized Parquet datasets |
 
-> This scale mirrors national and multinational precision-medicine programs.
+> **Scale Context:** Processing this dataset requires managing a feature matrix of **42,000,000,000,000 elements**, requiring distributed computing (Spark/Dask) rather than single-node processing.
 
 ---
 
