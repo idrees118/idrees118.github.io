@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧬 Genomic Biomarker Discovery Platform  
+# 🧬 Genomic Biomarker Discovery Platform
 ### Enterprise-Scale Genomic Data Lakehouse & Cost Simulation Engine
 
 [![Architecture](https://img.shields.io/badge/Architecture-Data_Lakehouse-8A2BE2?style=for-the-badge&logo=apache-spark)](https://spark.apache.org/)
@@ -10,10 +10,9 @@
 
 <br/>
 
-**A large-scale simulation platform modeling the computational and financial unit economics of processing  
-500,000+ Whole Genome Sequences using modern cloud-native architectures.**
+**A large-scale simulation platform modeling the computational and financial unit economics of processing 500,000+ Whole Genome Sequences using modern cloud-native architectures.**
 
-🔗 **Live Demo:** https://idrees118.github.io/
+🔗 **[Launch Live Simulator](https://idrees118.github.io/)**
 
 </div>
 
@@ -21,11 +20,9 @@
 
 ## 📌 Executive Summary
 
-The **Genomic Biomarker Discovery Platform** addresses a fundamental bottleneck in population-scale genomics:  
-**the prohibitive cost of storing and analyzing hundreds of thousands of whole genomes**.
+The **Genomic Biomarker Discovery Platform** addresses a fundamental bottleneck in population-scale genomics: **the prohibitive cost of storing and analyzing hundreds of thousands of whole genomes**.
 
-Large national initiatives such as **UK Biobank** and **NIH All of Us** generate **petabyte-scale sequencing data**.  
-Processing **500,000 Whole Genome Sequences (30× coverage)** produces more than **15 petabytes of raw data**, making traditional flat-file genomic architectures (VCF/BAM in standard cloud storage) financially unsustainable.
+Large national initiatives such as **UK Biobank** and **NIH All of Us** generate **petabyte-scale sequencing data**. Processing **500,000 Whole Genome Sequences (30× coverage)** produces more than **15 petabytes of raw data**, making traditional flat-file genomic architectures (VCF/BAM in standard cloud storage) financially unsustainable.
 
 This project demonstrates how a **Modern Data Lakehouse architecture** can:
 
@@ -66,7 +63,7 @@ While substantial in absolute terms, this represents **extreme cost efficiency**
 | Monthly Cost | ~$1,500,000 | **~$88,000** | **94% reduction** |
 | Cost / Patient | $3.00 / month | **$0.17 / month** | Best-in-class |
 
-> **Strategic Insight:**  
+> **Strategic Insight:**
 > Managing a **$250M genomic asset** (sequencing cost of 500k genomes) for **0.035% of its value per month** demonstrates long-term financial sustainability for longitudinal studies.
 
 ---
@@ -77,38 +74,31 @@ The cost reductions are achieved through **three deliberate architectural decisi
 
 ### 1️⃣ Intelligent Storage Tiering (Hot vs. Cold)
 
-**Problem:**  
-Storing 15+ PB of raw sequencing data in standard cloud storage is prohibitively expensive.
+**Problem:** Storing 15+ PB of raw sequencing data in standard cloud storage is prohibitively expensive.
 
-**Solution:**  
-- 97% of raw reads are moved to **AWS Glacier Deep Archive**  
-- Only analytical-ready data remains in high-performance storage  
+**Solution:**
+- 97% of raw reads are moved to **AWS Glacier Deep Archive**.
+- Only analytical-ready data remains in high-performance storage.
 
 💡 Result: **23× reduction in archival storage costs**
 
----
-
 ### 2️⃣ Columnar Compression (Parquet vs. VCF)
 
-**Problem:**  
-VCF files are text-based and inefficient for large-scale analytics.
+**Problem:** VCF files are text-based and inefficient for large-scale analytics.
 
-**Solution:**  
-- Use **Apache Parquet**, a binary columnar format  
-- Enables predicate pushdown, column pruning, and high compression  
+**Solution:**
+- Use **Apache Parquet**, a binary columnar format.
+- Enables predicate pushdown, column pruning, and high compression.
 
 💡 Result: **10–20× data size reduction and faster queries**
 
----
-
 ### 3️⃣ Spot Instance Compute Strategy
 
-**Problem:**  
-Long-running GPU clusters are extremely expensive when using on-demand instances.
+**Problem:** Long-running GPU clusters are extremely expensive when using on-demand instances.
 
-**Solution:**  
-- Fault-tolerant pipeline design  
-- Leverages **Spot Instances** for distributed ML training  
+**Solution:**
+- Fault-tolerant pipeline design.
+- Leverages **Spot Instances** for distributed ML training.
 
 💡 Result: **60–70% compute cost reduction**
 
@@ -134,6 +124,15 @@ graph TB
 
     subgraph Compute_Layer ["🟢 Compute & ML"]
         E --> H[Distributed XGBoost]
-        H --> I[NVIDIA A100 GPUs]
-        I --> J[Spot Instances]
+        H -->|Hardware| I[NVIDIA A100 GPUs]
+        I -->|Scaling| J[Spot Instances]
     end
+
+    %% Diagram Styling
+    classDef cold fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef hot fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef compute fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
+
+    class A,B,C cold;
+    class D,E,F,G hot;
+    class H,I,J compute;
