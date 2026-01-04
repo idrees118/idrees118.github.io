@@ -12,7 +12,7 @@
 
 **A simulation engine modeling the computational physics and financial unit economics of processing 500,000+ Whole Genome Sequences.**
 
-[View Live Demo](https://idrees118.github.io/) · [Report Bug](https://github.com/idrees118/)
+[View Live Demo](https://idrees118.github.io/) 
 
 </div>
 
