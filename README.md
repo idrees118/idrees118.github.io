@@ -10,8 +10,6 @@
 
 **A large-scale simulation platform modeling the computational and financial unit economics of processing 500,000+ Whole Genome Sequences using modern cloud-native architectures.**
 
-🔗 **[Launch Live Simulator](https://idrees118.github.io/)**
-
 </div>
 
 ---
@@ -108,21 +106,21 @@ The simulation mirrors a **production-grade AWS Genomic Data Lake** architecture
 
 ```mermaid
 graph TB
-    subgraph Cold_Layer ["🔵 Cold Storage (Archival)"]
+    subgraph Cold [🔵 Cold Storage Layer]
         A[Raw Sequencing Data] -->|FASTQ / CRAM| B[AWS Glacier Deep Archive]
         B --> C["$0.00099 / GB"]
     end
 
-    subgraph Hot_Layer ["🟠 Hot Analytical Layer"]
+    subgraph Hot [🟠 Hot Analytical Layer]
         B -.->|Spark ETL| D[Delta Lake]
         D --> E[Parquet Storage]
         E --> F["$0.023 / GB"]
         E -.-> G[10× Compression]
     end
 
-    subgraph Compute_Layer ["🟢 Compute & ML"]
+    subgraph Compute [🟢 Compute & ML Layer]
         E --> H[Distributed XGBoost]
-        H -->|Hardware| I[NVIDIA A100 GPUs]
+        H --> I[NVIDIA A100 GPUs]
         I -->|Scaling| J[Spot Instances]
     end
 
