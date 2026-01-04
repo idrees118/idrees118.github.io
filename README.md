@@ -1,61 +1,67 @@
+<div align="center">
+
 # 🧬 Genomic Biomarker Discovery Platform
 ### Enterprise-Scale Data Lakehouse & Cost Simulation Engine
 
-![Architecture](https://img.shields.io/badge/Architecture-Data%20Lakehouse-purple?style=for-the-badge&logo=apache-spark)
-![Scale](https://img.shields.io/badge/Scale-Petabyte--Class-green?style=for-the-badge&logo=amazonaws)
-![Domain](https://img.shields.io/badge/Domain-Precision%20Medicine-blue?style=for-the-badge&logo=dna)
-![Status](https://img.shields.io/badge/Status-Academic%20Research-orange?style=for-the-badge)
+[![Architecture](https://img.shields.io/badge/Architecture-Data_Lakehouse-8A2BE2?style=for-the-badge&logo=apache-spark)](https://spark.apache.org/)
+[![Scale](https://img.shields.io/badge/Scale-Petabyte_Class-2ea44f?style=for-the-badge&logo=amazonaws)](https://aws.amazon.com/)
+[![Domain](https://img.shields.io/badge/Domain-Precision_Medicine-007EC6?style=for-the-badge&logo=dna)](https://www.genome.gov/)
+[![Status](https://img.shields.io/badge/Status-Academic_Research-orange?style=for-the-badge)](https://github.com/)
+
+<br />
+
+**A simulation engine modeling the computational physics and financial unit economics of processing 500,000+ Whole Genome Sequences.**
+
+[View Demo](index.html) · [Report Bug](issues) · [Request Feature](issues)
+
+</div>
 
 ---
 
 ## 📖 Executive Summary
 
-The **Genomic Biomarker Discovery Platform** is an architectural simulator designed to model the financial and computational challenges of population-scale genomics (e.g., UK Biobank, All of Us).
+The **Genomic Biomarker Discovery Platform** addresses the critical infrastructure bottleneck in population-scale genomics (e.g., **UK Biobank**, **All of Us**).
 
-Processing **500,000+ Whole Genome Sequences (WGS)** generates over **15 Petabytes** of raw data. Traditional architectures are financially unsustainable at this scale. This project demonstrates a **Modern Data Lakehouse** approach, utilizing tiered storage, columnar compression, and spot-computing to achieve a **94% reduction in operational costs**.
+Processing **500,000 Whole Genome Sequences (WGS)** generates over **15 Petabytes** of raw data. Traditional architectures (VCF/BAM flat files) are financially unsustainable at this scale, often exceeding **$1.5M/month** in storage fees. 
+
+This project demonstrates a **Modern Data Lakehouse** approach, achieving a **94% reduction in operational costs** ($0.17/patient/month) while enabling high-performance ML training on **42 Trillion** data points.
 
 ---
 
 ## 📊 Dataset Scale & "Real-World" Context
 
-To understand the cost model, one must first understand the massive scale of the data being simulated.
+To understand the cost model, one must first appreciate the sheer magnitude of the data being simulated.
 
 | Metric | Value | Description |
 | :--- | :--- | :--- |
-| **Total Cohort Size** | **500,000 Patients** | Whole Genome Sequences (30x Coverage) |
-| **Feature Complexity** | **84 Million** | Unique genetic variants per patient |
-| **Raw Data Volume** | **15.4 Petabytes** | Uncompressed BAM/CRAM files (Archival) |
-| **Active Data Volume** | **400 Terabytes** | Compressed Parquet files (Analytical) |
+| **Total Cohort Size** | `500,000` | Patients with 30x WGS Coverage |
+| **Feature Complexity** | `84 Million` | Unique genetic variants per patient |
+| **Raw Data Volume** | `15.4 PB` | Uncompressed BAM/CRAM files (Archival) |
+| **Active Data Volume** | `400 TB` | Compressed Parquet files (Analytical) |
 
 ---
 
 ## 💰 Financial Impact Analysis
 
-A key output of this simulator is the **Total Estimated Monthly Cost** (approx. **$88,000**). While this figure appears high, it is extremely efficient when broken down by unit economics compared to legacy methods.
+A key output of this simulator is the **Total Estimated Monthly Cost** (~$88,000). While high in absolute terms, it represents extreme efficiency compared to legacy models.
 
-### 1. Cost Comparison
+### 🔴 Legacy vs. 🟢 Modern Architecture
 
-| Cost Component | Traditional Legacy Model | Our Lakehouse Model | Efficiency Gain |
+| Cost Component | Legacy Model (Standard) | Our Lakehouse Model | Efficiency Gain |
 | :--- | :--- | :--- | :--- |
-| **Storage Strategy** | All data in S3 Standard | Tiered (Hot + Deep Archive) | **95% Savings** |
-| **Data Format** | Raw VCF (Text - Bloated) | Parquet (Binary - Compact) | **90% Compression** |
-| **Compute Strategy** | On-Demand Instances | Spot Instances | **70% Savings** |
-| **Monthly Bill** | ~$1,500,000 | **~$88,000** | **94% Reduction** |
+| **Storage Strategy** | All data in S3 Standard | 🔴 Hot + 🔵 Deep Archive | **95% Savings** |
+| **Data Format** | Raw VCF (Text) | 🟢 Parquet (Binary) | **90% Compression** |
+| **Compute Strategy** | On-Demand Instances | 🟢 Spot Instances | **70% Savings** |
+| **Monthly Bill** | `~$1,500,000` | `~$88,000` | **94% Reduction** |
 
-### 2. Unit Economics (Cost Per Patient)
-
-* **Total Monthly Cost:** $88,026
-* **Total Patients:** 500,000
-* **Cost Per Patient:** **$0.17 per month**
-
-> **💡 Strategic Research Insight:**
-> Managing a genomic asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of **0.035% per month** demonstrates extreme financial viability for large-scale longitudinal studies.
+### 💡 Strategic Research Insight
+> **Managing a genomic asset value of $250 Million (the sequencing cost of 500k genomes) for an operational cost of just 0.035% per month demonstrates extreme financial viability for large-scale longitudinal studies.**
 
 ---
 
 ## 🏗️ System Architecture
 
-The simulation is based on a production-grade **AWS Genomic Data Lake** pipeline. It moves data from "Cold" storage to "Hot" analytics only when necessary.
+The simulation logic is based on a production-grade **AWS Genomic Data Lake** pipeline.
 
 ```mermaid
 graph TB
