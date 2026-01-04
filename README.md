@@ -1,113 +1,139 @@
 <div align="center">
 
-# 🧬 Genomic Biomarker Discovery Platform
-### Enterprise-Scale Data Lakehouse & Cost Simulation Engine
+# 🧬 Genomic Biomarker Discovery Platform  
+### Enterprise-Scale Genomic Data Lakehouse & Cost Simulation Engine
 
 [![Architecture](https://img.shields.io/badge/Architecture-Data_Lakehouse-8A2BE2?style=for-the-badge&logo=apache-spark)](https://spark.apache.org/)
 [![Scale](https://img.shields.io/badge/Scale-Petabyte_Class-2ea44f?style=for-the-badge&logo=amazonaws)](https://aws.amazon.com/)
 [![Domain](https://img.shields.io/badge/Domain-Precision_Medicine-007EC6?style=for-the-badge&logo=dna)](https://www.genome.gov/)
 [![Demo](https://img.shields.io/badge/Live_Demo-View_Project-FF4500?style=for-the-badge&logo=github)](https://idrees118.github.io/)
 
-<br />
+<br/>
 
-**A simulation engine modeling the computational physics and financial unit economics of processing 500,000+ Whole Genome Sequences.**
+**A large-scale simulation platform modeling the computational and financial unit economics of processing  
+500,000+ Whole Genome Sequences using modern cloud-native architectures.**
 
-[View Live Demo](https://idrees118.github.io/) 
+🔗 **Live Demo:** https://idrees118.github.io/
 
 </div>
 
 ---
 
-## Executive Summary
+## 📌 Executive Summary
 
-The **Genomic Biomarker Discovery Platform** addresses the critical infrastructure bottleneck in population-scale genomics (e.g., **UK Biobank**, **All of Us**).
+The **Genomic Biomarker Discovery Platform** addresses a fundamental bottleneck in population-scale genomics:  
+**the prohibitive cost of storing and analyzing hundreds of thousands of whole genomes**.
 
-Processing **500,000 Whole Genome Sequences (WGS)** generates over **15 Petabytes** of raw data. Traditional architectures (VCF/BAM flat files) are financially unsustainable at this scale, often exceeding **$1.5M/month** in storage fees. 
+Large national initiatives such as **UK Biobank** and **NIH All of Us** generate **petabyte-scale sequencing data**.  
+Processing **500,000 Whole Genome Sequences (30× coverage)** produces more than **15 petabytes of raw data**, making traditional flat-file genomic architectures (VCF/BAM in standard cloud storage) financially unsustainable.
 
-This project demonstrates a **Modern Data Lakehouse** approach, achieving a **94% reduction in operational costs** ($0.17/patient/month) while enabling high-performance ML training on **42 Trillion** data points.
+This project demonstrates how a **Modern Data Lakehouse architecture** can:
+
+- Achieve a **94% reduction in operational costs**
+- Reduce storage to **$0.17 per patient per month**
+- Enable scalable ML workflows across **42 trillion genomic data points**
 
 ---
 
-## Dataset Scale & "Real-World" Context
+## 🌍 Real-World Dataset Scale & Context
 
-To understand the cost model, one must first appreciate the sheer magnitude of the data being simulated.
+The simulator reflects **realistic sequencing volumes, formats, and access patterns** used in production genomics environments.
 
 | Metric | Value | Description |
-| :--- | :--- | :--- |
-| **Total Cohort Size** | `500,000` | Patients with 30x WGS Coverage |
-| **Feature Complexity** | `84 Million` | Unique genetic variants per patient |
-| **Raw Data Volume** | `15.4 PB` | Uncompressed BAM/CRAM files (Archival) |
-| **Active Data Volume** | `400 TB` | Compressed Parquet files (Analytical) |
+|------|------|------------|
+| **Cohort Size** | 500,000 | Individuals with 30× WGS coverage |
+| **Variant Complexity** | 84 million | Unique variants per individual |
+| **Raw Data Volume** | 15.4 PB | FASTQ / BAM / CRAM (archival) |
+| **Active Analytical Data** | ~400 TB | Optimized Parquet datasets |
+
+> This scale mirrors national and multinational precision-medicine programs.
 
 ---
 
-## Financial Impact Analysis
+## 💰 Financial Impact Analysis
 
-A key output of this simulator is the **Total Estimated Monthly Cost** (~$88,000). While high in absolute terms, it represents extreme efficiency compared to legacy models.
+A primary output of this simulation is the **estimated total monthly infrastructure cost: ~$88,000**.
 
-### Legacy vs. Modern Architecture Comparison
+While substantial in absolute terms, this represents **extreme cost efficiency** when compared to legacy genomic systems.
 
-| Cost Component | Legacy Model (Standard) | Our Lakehouse Model | Efficiency Gain |
-| :--- | :--- | :--- | :--- |
-| **Storage Strategy** | All data in S3 Standard | **Tiered (Hot + Deep Archive)** | **95% Savings** |
-| **Data Format** | Raw VCF (Text) | **Parquet (Binary)** | **90% Compression** |
-| **Compute Strategy** | On-Demand Instances | **Spot Instances** | **70% Savings** |
-| **Monthly Bill** | ~$1,500,000 | **~$88,000** | **94% Reduction** |
-| **Cost Per Patient** | $3.00 / month | **$0.17 / month** | **Best-in-Class** |
+### Legacy vs. Lakehouse Architecture
 
-> ** Strategic Research Insight:**
-> Managing a genomic asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of just **0.035% per month** demonstrates extreme financial viability for large-scale longitudinal studies.
+| Cost Component | Legacy Architecture | Lakehouse Architecture | Improvement |
+|---------------|--------------------|-----------------------|------------|
+| Storage Model | All data in S3 Standard | Tiered (Hot + Deep Archive) | **95% savings** |
+| Data Format | VCF (text-based) | Parquet (columnar) | **90% compression** |
+| Compute Model | On-demand instances | Spot instances | **70% savings** |
+| Monthly Cost | ~$1,500,000 | **~$88,000** | **94% reduction** |
+| Cost / Patient | $3.00 / month | **$0.17 / month** | Best-in-class |
 
----
-
-##  Technical Optimization Strategies
-
-Here is exactly what we used to achieve these savings:
-
-### 1. Intelligent Storage Tiering (Hot vs. Cold)
-* **The Problem:** Storing 15 Petabytes of raw sequencing data (CRAM files) in standard cloud storage is prohibitively expensive ($0.023/GB).
-* **Our Solution:** We moved 97% of the data (the raw reads) to **AWS Glacier Deep Archive** ($0.00099/GB), which is 23x cheaper. We only keep the "Hot" analytical data (variants) in expensive storage.
-
-### 2. Columnar Compression (Parquet vs. VCF)
-* **The Problem:** Genomic data usually comes in VCF format, which is a bloated text file.
-* **Our Solution:** We utilized **Apache Parquet**, a binary columnar format. This compresses genomic data by **10-20x** compared to text, drastically reducing the storage footprint and speeding up queries.
-
-### 3. Spot Instance Computing
-* **The Problem:** Running high-performance GPU clusters for weeks costs a fortune.
-* **Our Solution:** The pipeline is designed to be fault-tolerant, allowing us to use **Spot Instances** (spare cloud capacity) which are **60-70% cheaper** than standard on-demand servers.
+> **Strategic Insight:**  
+> Managing a **$250M genomic asset** (sequencing cost of 500k genomes) for **0.035% of its value per month** demonstrates long-term financial sustainability for longitudinal studies.
 
 ---
 
-##  System Architecture
+## ⚙️ Core Optimization Strategies
 
-The simulation logic is based on a production-grade **AWS Genomic Data Lake** pipeline.
+The cost reductions are achieved through **three deliberate architectural decisions**.
+
+### 1️⃣ Intelligent Storage Tiering (Hot vs. Cold)
+
+**Problem:**  
+Storing 15+ PB of raw sequencing data in standard cloud storage is prohibitively expensive.
+
+**Solution:**  
+- 97% of raw reads are moved to **AWS Glacier Deep Archive**  
+- Only analytical-ready data remains in high-performance storage  
+
+💡 Result: **23× reduction in archival storage costs**
+
+---
+
+### 2️⃣ Columnar Compression (Parquet vs. VCF)
+
+**Problem:**  
+VCF files are text-based and inefficient for large-scale analytics.
+
+**Solution:**  
+- Use **Apache Parquet**, a binary columnar format  
+- Enables predicate pushdown, column pruning, and high compression  
+
+💡 Result: **10–20× data size reduction and faster queries**
+
+---
+
+### 3️⃣ Spot Instance Compute Strategy
+
+**Problem:**  
+Long-running GPU clusters are extremely expensive when using on-demand instances.
+
+**Solution:**  
+- Fault-tolerant pipeline design  
+- Leverages **Spot Instances** for distributed ML training  
+
+💡 Result: **60–70% compute cost reduction**
+
+---
+
+## 🏗️ System Architecture
+
+The simulation mirrors a **production-grade AWS Genomic Data Lake** architecture.
 
 ```mermaid
 graph TB
-    %% Nodes
-    subgraph Cold_Layer ["🔵 Cold Storage Layer (Archival)"]
-        A[Raw Sequencing Data] -->|FASTQ/CRAM| B[AWS Glacier Deep Archive]
-        B -->|Cost Basis| C["$0.00099 / GB"]
+    subgraph Cold_Layer ["🔵 Cold Storage (Archival)"]
+        A[Raw Sequencing Data] -->|FASTQ / CRAM| B[AWS Glacier Deep Archive]
+        B --> C["$0.00099 / GB"]
     end
-    
-    subgraph Hot_Layer ["🟠 Hot Analytical Layer (Active)"]
-        B -.->|Spark ETL| D[Delta Lake Storage]
-        D -->|Format| E[Compressed Parquet]
-        E -->|Cost Basis| F["$0.023 / GB"]
-        E -.->|Optimization| G[10x Compression vs VCF]
+
+    subgraph Hot_Layer ["🟠 Hot Analytical Layer"]
+        B -.->|Spark ETL| D[Delta Lake]
+        D --> E[Parquet Storage]
+        E --> F["$0.023 / GB"]
+        E -.-> G[10× Compression]
     end
-    
-    subgraph Compute_Layer ["🟢 Discovery Layer (Compute)"]
+
+    subgraph Compute_Layer ["🟢 Compute & ML"]
         E --> H[Distributed XGBoost]
-        H -->|Hardware| I[NVIDIA A100 Cluster]
-        I -->|Scaling| J[Spot Instances]
+        H --> I[NVIDIA A100 GPUs]
+        I --> J[Spot Instances]
     end
-
-    %% Styles
-    classDef cold fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    classDef hot fill:#fff3e0,stroke:#e65100,stroke-width:2px;
-    classDef compute fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
-
-    class A,B,C cold;
-    class D,E,F,G hot;
-    class H,I,J compute;
