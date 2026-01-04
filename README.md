@@ -14,16 +14,6 @@ Processing **500,000+ Whole Genome Sequences (WGS)** generates over **15 Petabyt
 
 ---
 
-## 🎯 Research Objectives
-
-This platform addresses three critical bottlenecks in modern bioinformatics:
-
-1.  **The Storage Crisis:** Raw genomic data is massive and expensive. We model a strategy that moves 97% of data to Cold Storage, keeping only "Hot" analytical features active.
-2.  **The Compute Barrier:** Legacy pipelines fail to scale beyond 10,000 samples. We simulate a distributed Spark/XGBoost architecture capable of processing **42 Trillion data points**.
-3.  **Financial Feasibility:** Researchers need accurate "Unit Economics" for grant applications. This tool calculates the exact cost-per-sample (**$0.17/month**) rather than rough estimates.
-
----
-
 ## 🏗️ System Architecture
 
 The simulation is based on a production-grade **AWS Genomic Data Lake** pipeline. It visualizes the flow from raw ingestion to machine learning insights.
