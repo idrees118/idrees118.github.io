@@ -1,78 +1,64 @@
 # 🧬 Genomic Biomarker Discovery Platform
-### Enterprise-Scale Data Lakehouse & Cost Simulation Engine
+### Enterprise-Scale Data Lakehouse Architecture Simulator
 
-![Architecture](https://img.shields.io/badge/Architecture-Data%20Lakehouse-purple?style=for-the-badge&logo=apache-spark)
-![Scale](https://img.shields.io/badge/Scale-Petabyte--Class-green?style=for-the-badge&logo=amazonaws)
-![Domain](https://img.shields.io/badge/Domain-Precision%20Medicine-blue?style=for-the-badge&logo=dna)
-![Status](https://img.shields.io/badge/Status-Academic%20Research-orange?style=for-the-badge)
+![Project Status](https://img.shields.io/badge/Status-Academic%20Submission-blue)
+![Architecture](https://img.shields.io/badge/Architecture-Data%20Lakehouse-purple)
+![Scale](https://img.shields.io/badge/Scale-Petabyte-green)
 
----
+## 📋 Project Overview
 
-## 📖 Executive Summary
+This project is a **web-based architectural simulator** designed to model the computational resources, storage tiering, and financial implications of processing **Whole Genome Sequencing (WGS)** data at population scale (e.g., UK Biobank scale).
 
-The **Genomic Biomarker Discovery Platform** is an architectural simulator designed to model the financial and computational challenges of population-scale genomics (e.g., UK Biobank, All of Us).
-
-Processing **500,000+ Whole Genome Sequences (WGS)** generates over **15 Petabytes** of raw data. Traditional architectures are financially unsustainable at this scale. This project demonstrates a **Modern Data Lakehouse** approach, utilizing tiered storage, columnar compression, and spot-computing to achieve a **94% reduction in operational costs**.
+It demonstrates a **Modern Data Lakehouse** approach, moving away from legacy flat-file storage (VCFs) to optimized columnar formats (Parquet/Delta Lake), resulting in massive cost efficiencies for large-scale Machine Learning pipelines.
 
 ---
 
-## 📊 Dataset Scale & "Real-World" Context
+## 🚀 Live Simulation
+The simulation provides real-time modeling of:
+* **Data Volume:** 500,000+ WGS Samples (~15 Petabytes raw).
+* **Feature Complexity:** 84 Million genetic variants per sample.
+* **Infrastructure Costs:** AWS Spot Instances + Glacier Deep Archive.
 
-To understand the cost model, one must first understand the massive scale of the data being simulated.
+### 📊 Key Architecture Features
+1.  **Tiered Storage Strategy:** * **Hot Storage:** Active analytical data (Parquet) stored in S3 Standard.
+    * **Cold Storage:** Raw CRAM/FASTQ files moved to Glacier Deep Archive ($0.00099/GB).
+2.  **Distributed ML Training:** * Models the cost of running XGBoost on distributed GPU clusters (NVIDIA A100/V100) using Dask/RAPIDS.
+3.  **Scientific Accuracy:** * Calculations account for compression ratios (10:1 for Parquet), shuffle partitions, and diminishing returns on model accuracy (AUPRC).
 
-| Metric | Value | Description |
+---
+
+## 📉 Financial Analysis & Unit Economics
+
+A key output of this simulator is the **Total Estimated Monthly Cost** (approx. **$88,000** for 500k samples). While this figure appears high, it represents a **94% cost reduction** compared to legacy architectures.
+
+| Metric | Legacy Architecture | Modern Lakehouse (This Model) |
 | :--- | :--- | :--- |
-| **Total Cohort Size** | **500,000 Patients** | Whole Genome Sequences (30x Coverage) |
-| **Feature Complexity** | **84 Million** | Unique genetic variants per patient |
-| **Raw Data Volume** | **15.4 Petabytes** | Uncompressed BAM/CRAM files (Archival) |
-| **Active Data Volume** | **400 Terabytes** | Compressed Parquet files (Analytical) |
+| **Storage Strategy** | All data in S3 Standard | Tiered (Hot + Deep Archive) |
+| **Data Format** | Raw VCF (Text) | Snappy-Compressed Parquet |
+| **Compute** | On-Demand Instances | Spot Instances (60% Savings) |
+| **Monthly Cost** | ~$1,500,000 | **~$88,000** |
+| **Cost Per Patient** | $3.00 / month | **$0.17 / month** |
+
+> **Context:** Managing an asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of **0.035% per month** demonstrates extreme financial efficiency.
 
 ---
 
-## 💰 Financial Impact Analysis
+## 🏗️ Technical Pipeline Visualized
 
-A key output of this simulator is the **Total Estimated Monthly Cost** (approx. **$88,000**). While this figure appears high, it is extremely efficient when broken down by unit economics compared to legacy methods.
-
-### 1. Cost Comparison
-
-| Cost Component | Traditional Legacy Model | Our Lakehouse Model | Efficiency Gain |
-| :--- | :--- | :--- | :--- |
-| **Storage Strategy** | All data in S3 Standard | Tiered (Hot + Deep Archive) | **95% Savings** |
-| **Data Format** | Raw VCF (Text - Bloated) | Parquet (Binary - Compact) | **90% Compression** |
-| **Compute Strategy** | On-Demand Instances | Spot Instances | **70% Savings** |
-| **Monthly Bill** | ~$1,500,000 | **~$88,000** | **94% Reduction** |
-
-### 2. Unit Economics (Cost Per Patient)
-
-* **Total Monthly Cost:** $88,026
-* **Total Patients:** 500,000
-* **Cost Per Patient:** **$0.17 per month**
-
-> **💡 Strategic Research Insight:**
-> Managing a genomic asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of **0.035% per month** demonstrates extreme financial viability for large-scale longitudinal studies.
-
----
-
-## 🏗️ System Architecture
-
-The simulation is based on a production-grade **AWS Genomic Data Lake** pipeline. It moves data from "Cold" storage to "Hot" analytics only when necessary.
+The project uses `Mermaid.js` to render the data flow dynamically:
 
 ```mermaid
 graph TB
-    subgraph "Ingestion Layer (Cold)"
-        A[Raw Sequencing Data] -->|FASTQ/CRAM| B[AWS Glacier Deep Archive]
-        B -->|Cost Basis| C["$0.00099 / GB"]
+    subgraph "Ingestion & Archival"
+        A[Raw WGS Data] --> B[Glacier Deep Archive (Cold)]
     end
     
-    subgraph "Analytical Layer (Hot)"
-        B -.->|Spark ETL| D[Delta Lake Storage]
-        D -->|Format| E[Compressed Parquet]
-        E -->|Cost Basis| F["$0.023 / GB"]
-        E -.->|Optimization| G[10x Compression vs VCF]
+    subgraph "Active Analytics"
+        B -.->|ETL| C[Apache Spark Cluster]
+        C --> D[Delta Lake (Hot/Parquet)]
     end
     
-    subgraph "Discovery Layer (Compute)"
-        E --> H[Distributed XGBoost]
-        H -->|Hardware| I[NVIDIA A100 Cluster]
-        I -->|Scaling| J[Spot Instances]
+    subgraph "Discovery"
+        D --> E[Distributed GPU Training]
+        E --> F[Biomarker Identification]
     end
