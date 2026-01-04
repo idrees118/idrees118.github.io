@@ -6,30 +6,56 @@
 ![Domain](https://img.shields.io/badge/Domain-Precision%20Medicine-blue?style=for-the-badge&logo=dna)
 ![Status](https://img.shields.io/badge/Status-Academic%20Research-orange?style=for-the-badge)
 
+---
+
 ## 📖 Executive Summary
 
-The **Genomic Biomarker Discovery Platform** is an advanced architectural simulator designed to model the computational challenges of population-scale genomics (e.g., UK Biobank, All of Us).
+The **Genomic Biomarker Discovery Platform** is an architectural simulator designed to model the financial and computational challenges of population-scale genomics (e.g., UK Biobank, All of Us).
 
-Processing **500,000+ Whole Genome Sequences (WGS)** generates over **15 Petabytes** of raw data. Traditional "flat-file" architectures (VCF/BAM) are financially unsustainable at this scale. This project demonstrates a **Modern Data Lakehouse** approach, utilizing tiered storage, columnar compression (Parquet), and distributed spot-computing to achieve a **94% reduction in operational costs** while maintaining high-performance Machine Learning capabilities.
+Processing **500,000+ Whole Genome Sequences (WGS)** generates over **15 Petabytes** of raw data. Traditional architectures are financially unsustainable at this scale. This project demonstrates a **Modern Data Lakehouse** approach, utilizing tiered storage, columnar compression, and spot-computing to achieve a **94% reduction in operational costs**.
 
 ---
 
-## 🎯 Research Objectives
+## 📊 Dataset Scale & "Real-World" Context
 
-This platform addresses three critical bottlenecks in modern bioinformatics:
+To understand the cost model, one must first understand the massive scale of the data being simulated.
 
-1.  **The Storage Crisis:** Raw genomic data is massive and expensive. We model a strategy that moves 97% of data to Cold Storage, keeping only "Hot" analytical features active.
-2.  **The Compute Barrier:** Legacy pipelines fail to scale beyond 10,000 samples. We simulate a distributed Spark/XGBoost architecture capable of processing **42 Trillion data points**.
-3.  **Financial Feasibility:** Researchers need accurate "Unit Economics" for grant applications. This tool calculates the exact cost-per-sample (**$0.17/month**) rather than rough estimates.
+| Metric | Value | Description |
+| :--- | :--- | :--- |
+| **Total Cohort Size** | **500,000 Patients** | Whole Genome Sequences (30x Coverage) |
+| **Feature Complexity** | **84 Million** | Unique genetic variants per patient |
+| **Raw Data Volume** | **15.4 Petabytes** | Uncompressed BAM/CRAM files (Archival) |
+| **Active Data Volume** | **400 Terabytes** | Compressed Parquet files (Analytical) |
+
+---
+
+## 💰 Financial Impact Analysis
+
+A key output of this simulator is the **Total Estimated Monthly Cost** (approx. **$88,000**). While this figure appears high, it is extremely efficient when broken down by unit economics compared to legacy methods.
+
+### 1. Cost Comparison
+
+| Cost Component | Traditional Legacy Model | Our Lakehouse Model | Efficiency Gain |
+| :--- | :--- | :--- | :--- |
+| **Storage Strategy** | All data in S3 Standard | Tiered (Hot + Deep Archive) | **95% Savings** |
+| **Data Format** | Raw VCF (Text - Bloated) | Parquet (Binary - Compact) | **90% Compression** |
+| **Compute Strategy** | On-Demand Instances | Spot Instances | **70% Savings** |
+| **Monthly Bill** | ~$1,500,000 | **~$88,000** | **94% Reduction** |
+
+### 2. Unit Economics (Cost Per Patient)
+
+* **Total Monthly Cost:** $88,026
+* **Total Patients:** 500,000
+* **Cost Per Patient:** **$0.17 per month**
+
+> **💡 Strategic Research Insight:**
+> Managing a genomic asset value of **$250 Million** (the sequencing cost of 500k genomes) for an operational cost of **0.035% per month** demonstrates extreme financial viability for large-scale longitudinal studies.
 
 ---
 
 ## 🏗️ System Architecture
 
-The simulation is based on a production-grade **AWS Genomic Data Lake** pipeline. It visualizes the flow from raw ingestion to machine learning insights.
-
-### The "Lakehouse" Methodology
-Instead of querying slow, text-based VCF files, this model assumes an ETL process that converts variants into **Snappy-compressed Parquet files** (Delta Lake).
+The simulation is based on a production-grade **AWS Genomic Data Lake** pipeline. It moves data from "Cold" storage to "Hot" analytics only when necessary.
 
 ```mermaid
 graph TB
