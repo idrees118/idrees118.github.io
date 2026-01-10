@@ -23,7 +23,7 @@ Large national initiatives such as **UK Biobank** and **NIH All of Us** generate
 This project demonstrates how a **Modern Data Lakehouse architecture** can:
 
 - Achieve a **94% reduction in operational costs**
-- Reduce storage to **$0.17 per patient per month**
+- Reduce storage to **$0.12 per patient per month**
 - Enable scalable ML workflows across **42 trillion genomic data points**
 
 ---
@@ -46,7 +46,7 @@ The simulator reflects **realistic sequencing volumes, formats, and access patte
 
 ## 💰 Financial Impact Analysis
 
-A primary output of this simulation is the **estimated total monthly infrastructure cost: ~$88,000**.
+A primary output of this simulation is the **estimated total monthly infrastructure cost: $60,770**.
 
 While substantial in absolute terms, this represents **extreme cost efficiency** when compared to legacy genomic systems.
 
@@ -55,55 +55,17 @@ While substantial in absolute terms, this represents **extreme cost efficiency**
 | Cost Component | Legacy Architecture | Lakehouse Architecture | Improvement |
 |---------------|--------------------|-----------------------|------------|
 | Storage Model | All data in S3 Standard | Tiered (Hot + Deep Archive) | **95% savings** |
-| Data Format | VCF (text-based) | Parquet (columnar) | **90% compression** |
+| Data Format | VCF (text-based) | Parquet (columnar) | **10-20× compression** |
 | Compute Model | On-demand instances | Spot instances | **70% savings** |
-| Monthly Cost | ~$1,500,000 | **~$88,000** | **94% reduction** |
-| Cost / Patient | $3.00 / month | **$0.17 / month** | Best-in-class |
+| Monthly Cost | ~$180,000 | **~$60,770** | **66% reduction** |
+| Cost / Patient | $0.36 / month | **$0.12 / month** | Best-in-class |
 
 > **Strategic Insight:**
-> Managing a **$250M genomic asset** (sequencing cost of 500k genomes) for **0.035% of its value per month** demonstrates long-term financial sustainability for longitudinal studies.
-
----
-
-## ⚙️ Core Optimization Strategies
-
-The cost reductions are achieved through **three deliberate architectural decisions**.
-
-### 1️⃣ Intelligent Storage Tiering (Hot vs. Cold)
-
-**Problem:** Storing 15+ PB of raw sequencing data in standard cloud storage is prohibitively expensive.
-
-**Solution:**
-- 97% of raw reads are moved to **AWS Glacier Deep Archive**.
-- Only analytical-ready data remains in high-performance storage.
-
-💡 Result: **23× reduction in archival storage costs**
-
-### 2️⃣ Columnar Compression (Parquet vs. VCF)
-
-**Problem:** VCF files are text-based and inefficient for large-scale analytics.
-
-**Solution:**
-- Use **Apache Parquet**, a binary columnar format.
-- Enables predicate pushdown, column pruning, and high compression.
-
-💡 Result: **10–20× data size reduction and faster queries**
-
-### 3️⃣ Spot Instance Compute Strategy
-
-**Problem:** Long-running GPU clusters are extremely expensive when using on-demand instances.
-
-**Solution:**
-- Fault-tolerant pipeline design.
-- Leverages **Spot Instances** for distributed ML training.
-
-💡 Result: **60–70% compute cost reduction**
+> Managing a **$250M genomic asset** (sequencing cost of 500k genomes) for **0.024% of its value per month** demonstrates long-term financial sustainability for longitudinal studies.
 
 ---
 
 ## 🏗️ System Architecture
-
-The simulation mirrors a **production-grade AWS Genomic Data Lake** architecture.
 
 ```mermaid
 graph TB
