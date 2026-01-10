@@ -4,7 +4,7 @@
 ### Enterprise-Scale Genomic Data Lakehouse & Cost Simulation Engine
 
 [![Domain](https://img.shields.io/badge/Domain-Precision_Medicine-007EC6?style=for-the-badge&logo=dna)](https://www.genome.gov/)
-[![Demo](https://img.shields.io/badge/Live_Demo-View_Project-FF4500?style=for-the-badge&logo=github)](https://idrees118.github.io/)
+[![Demo](https://img.shields.io/badge/Live_Demo-View_Project-FF4500?style=for-the-badge&logo=github)](https://idrees118.github.io/genomic-biomarker-discovery-platform/)
 
 <br/>
 
